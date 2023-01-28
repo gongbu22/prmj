@@ -52,12 +52,6 @@ app.post("/cardSearch", (req, res)=> {
     
 // })
 
-app.get("/userList", (req, res) => {
-    const list = connection.query("selelct * from EVENT2")
-    console.log(list);
-    res.json(list);
-})
-
 //AddEvent
 app.post("/add", (req, res)=> {
     const add = req.body;
@@ -76,6 +70,12 @@ app.post("/add", (req, res)=> {
         ]
         )
     console.log(result);
+})
+
+app.get("/userList", (req, res) => {
+    const list = connection.query("select * from EVENT2")
+    console.log(list);
+    res.json(list);
 })
 
 
