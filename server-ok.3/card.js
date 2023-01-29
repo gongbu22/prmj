@@ -53,10 +53,17 @@ app.post("/cardSearch", (req, res)=> {
 // })
 
 app.get("/category1", (req, res) => {
-    // var eventName1 =req.query.event
-    // const event1 = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName1+'"')
-    console.log(req.query.event)
-    // res.json(event1)
+    var eventName1 =req.query.event1
+    const event1 = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName1+'"')
+    console.log(req.query.event1)
+    res.json(event1)
+})
+
+app.get("/category2", (req, res) => {
+    var eventName2 =req.query.event2
+    const event2 = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName2+'"')
+    console.log(req.query.event2)
+    res.json(event2)
 })
 
 //AddEvent

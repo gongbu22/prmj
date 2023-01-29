@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardList from "./CardList";
 import './CardModule.css';
 import { MdSearch } from "react-icons/md";
@@ -12,12 +12,11 @@ const Cards = () => {
   const [cards, setCards] = useState([]);
   const [temp, setSearch] = useState([]);
 
-  useEffect(() => {
+
     axios.get("http://3.38.26.169:3001/cardList").then((res) => {
       // console.log(res)
       setCards(res.data);
     });
-  }, []);
 
   const searchHandler = (s) => {
     s.preventDefault();
@@ -42,18 +41,30 @@ const Cards = () => {
   
   const searchevent1 = (e) => {
      e.preventDefault();
-    const eventName= e.target.value
+    const eventName1= e.target.value
     
-    axios.get("http://3.38.26.169:3001/category1?event="+eventName).then((res) => {
+    axios.get("http://3.38.26.169:3001/category1?event1="+eventName1).then((res) => {
     
-      // setCards(res.data);
-      // console.log(res.data)
+      setCards(res.data);
+      console.log(res.data);
+    });
+  }
+  
+  const searchevent2 = (e) => {
+     e.preventDefault();
+    const eventName2= e.target.value
+    
+    axios.get("http://3.38.26.169:3001/category2?event2="+eventName2).then((res) => {
+    
+      setCards(res.data);
+      console.log(res.data);
     });
   }
   
 
   const card = cards.map((c) => (
     <CardList
+      key={c.EVENT_CODE}
       EVENT_CODE={c.EVENT_CODE}
       EVENT_CATEGORY={c.EVENT_CATEGORY}
       EVENT_NAME={c.EVENT_NAME}
@@ -75,7 +86,11 @@ const Cards = () => {
         <input className="searchinput" onChange={searchHandler} ></input>
         <button type="submit" className="searchButton">검 색 <MdSearch style={{width: '25px'}}/></button>
       </form>
-      <input type='button' onSubmit={searchevent1} value='보안'></input>
+      <div>
+      카테고리:
+        <input type='button' onClick={searchevent1} value='보안' ></input>
+        <input type='button' onClick={searchevent2} value='공모전' ></input>
+      </div>
      </div>
         <div className="container">{card}</div>
         
