@@ -37,6 +37,18 @@
   }
 }
 
+#nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nav li {
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
 .cardMenu {
   border: 1px solid red;
   float: left;
@@ -57,3 +69,4 @@
     width:30%;
     box-sizing: border-box;
 }
+

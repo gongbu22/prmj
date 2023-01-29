@@ -52,6 +52,13 @@ app.post("/cardSearch", (req, res)=> {
     
 // })
 
+app.get("/category1", (req, res) => {
+    // var eventName1 =req.query.event
+    // const event1 = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName1+'"')
+    console.log(req.query.event)
+    // res.json(event1)
+})
+
 //AddEvent
 app.post("/add", (req, res)=> {
     const add = req.body;
@@ -78,6 +85,11 @@ app.get("/userList", (req, res) => {
     res.json(list);
 })
 
+//favourite
+app.get("/favourite", (req,res) => {
+    console.log(req.query);
+    console.log("hi")
+})
 
 
 module.exports=app;

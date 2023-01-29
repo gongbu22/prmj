@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CardList from "./CardList";
 import './CardModule.css';
+import { MdSearch } from "react-icons/md";
 
 
 
@@ -39,6 +40,17 @@ const Cards = () => {
     });
   };
   
+  const searchevent1 = (e) => {
+     e.preventDefault();
+    const eventName= e.target.value
+    
+    axios.get("http://3.38.26.169:3001/category1?event="+eventName).then((res) => {
+    
+      // setCards(res.data);
+      // console.log(res.data)
+    });
+  }
+  
 
   const card = cards.map((c) => (
     <CardList
@@ -57,12 +69,13 @@ const Cards = () => {
   ));
   
   return (
-    <div>
-    <div>
+    <div className='box'>
+    <div className='searchbox'>
       <form onSubmit={submitHandler} className="search">
         <input className="searchinput" onChange={searchHandler} ></input>
-        <button type="submit" className="searchButton">검색</button>
+        <button type="submit" className="searchButton">검 색 <MdSearch style={{width: '25px'}}/></button>
       </form>
+      <input type='button' onSubmit={searchevent1} value='보안'></input>
      </div>
         <div className="container">{card}</div>
         

@@ -6,7 +6,7 @@ import About from './component/About';
 import {Routes, Route, NavLink} from 'react-router-dom';
 
 const activeStyle = {
-  color: 'orange',
+  color: '#A9DD54',
   textDecoration: 'underline'
 }
 const deactiveStyle = {
@@ -16,22 +16,25 @@ const deactiveStyle = {
 
 function App() {
   return (
-    <div className='nav'>
-       <div className={styles.cardMenu}> 
-        <NavLink to="/" style={({isActive}) => {
+    <div>
+       <ul id='nav'> 
+        <li><NavLink to="/" style={({isActive}) => {
           return isActive ? activeStyle : deactiveStyle;
         }}>Card</NavLink>
-      </div>
-      <div className={styles.userMenu}>
+        </li>
+        
+        <li>
         <NavLink to="/user" style={({isActive}) => {
           return isActive ? activeStyle : deactiveStyle;
         }}>User</NavLink>
-      </div>
-      <div className='aboutMenu'>
+        </li>
+
+        <li>
         <NavLink to="/about" style={({isActive}) => {
           return isActive ? activeStyle : deactiveStyle;
         }}>About</NavLink>
-      </div>
+        </li>
+      </ul>
       <hr />
       <Routes>
         <Route path="/" element={<Card />}></Route>
@@ -39,6 +42,7 @@ function App() {
         <Route path="/about" element={<About />}></Route>
       </Routes>
     </div>
+
   );
 }
 

@@ -1,10 +1,23 @@
-.container {
-    width: 1500px;
-    padding: 40px 10px 10px 10px;
-    flex-wrap: wrap;
-    display: flex;
+.box {
+        background: #F5F5F5;
 }
 
+.container {
+    width: 1500px;
+    padding: 10px 10px 10px 10px;
+    flex-wrap: wrap;
+    display: flex;
+     margin: 30px;
+    margin-left: 50px;
+}
+
+.searchbox {
+    padding-top: 30px;
+    border: none;
+    width: 100%;
+    text-align:center;
+
+}
 /*.card {*/
 /*    height: 400px;*/
 /*    line-height: 100px;*/
@@ -15,25 +28,57 @@
 /*    padding: 50px;*/
 /*}*/
 
-.container {
-    margin: 50px;
-}
 
 #hidden {
     visibility: hidden;
 }
 
 .searchinput {
-    margin-left: 30px;
-    width: 500px;
-    height: 30px;
-    border-redius: 30px;
-    border: 1px solid black;
+    width: 400px;
+    height: 35px;
+    /*background-color : none;*/
+    /*border-radius: 30px;*/
+    border: none;
+    /*box-shadow: 0px 0px 5px lightgray;*/
+    background: #FFFFFF;
+    /* default */
+    
+    box-shadow: 1px 1px 10px rgba(96, 108, 128, 0.15);
+    border-radius: 24px;
 }
 
 .searchButton {
-    margin-top: 30px;
-    margin-left: 50px;
-    width: 100px;
+    width: 80px;
+    margin-left: 20px;
     height: 30px;
+    /*background-color : none;*/
+    /*border-radius: 20px;*/
+    /*border: 1px solid lightgray;*/
+    /*box-shadow: 0px 0px 5px lightgray;*/
+    /*background: linear-gradient(55.6deg, #A9DD54 0%, #56CDDD 88.09%);*/
+    /*box-shadow: 1px 1px 10px rgba(96, 108, 128, 0.15);*/
+    /*border-radius: 14px;*/
+    /*color: white;*/
+    background: #A9DD54;
+    border-radius: 24px 24px 24px 24px;
+    border: none;
+    box-shadow: 0px 0px 5px lightgray;
+    color:white;
+    text-align:center;
+    cursor: pointer;
 }
+
+.category {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+    width: 60px;
+    height: 25px;
+    text-align: center;
+    border-radius: 50px;
+    float: center;
+    background: #A9DD54;
+    border: none;
+    color: white;
+}
+

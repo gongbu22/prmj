@@ -1,18 +1,25 @@
 import React from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import axios from 'axios';
+import './CardModalModule.css';
 
 function ModalExampleModal(code) {
   const [open, setOpen] = React.useState(false)
+  const [count, setCount] = React.useState(0);
   
+  const handleClick = () => {
+    setCount(count + 1);
+  };
   
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>{code.code.EVENT_CODE}상세보기</Button>}
+      trigger={<Button onClick={handleClick}  style={{background: "linear-gradient(55.6deg, #A9DD54 0%, #56CDDD 88.09%)" , color:'white'}} >{code.code.EVENT_CODE}상세보기</Button>}
     >
       <Modal.Header>{code.code.HOST}상세페이지</Modal.Header>
+      <div>조회수: {count}</div>
       <Modal.Content image>
         <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
         <Modal.Description>

@@ -1,6 +1,9 @@
 import { Card, Image } from 'semantic-ui-react'
 import './CardModule.css';
-import CardModal from './CardModal'
+import CardModal from './CardModal';
+import Favourite from './Favourite';
+import { MdOutlineFestival, MdPlace, MdCalendarToday } from "react-icons/md";
+import moment from 'moment';
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -13,19 +16,20 @@ const CardExampleCard = (props) => (
     <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
     <Card.Content>
       <Card.Meta>
-        <span className='category'>{props.EVENT_CATEGORY}</span>
+        <div className='category'>{props.EVENT_CATEGORY}</div>
       </Card.Meta>
       <Card.Header>
-        <span className='name'>{props.EVENT_NAME}</span>
+        <MdOutlineFestival /><span className='name' style={{padding:"10px"}}>{props.EVENT_NAME}</span>
       </Card.Header>
       <Card.Meta>
-        <span className='place'>{props.EVENT_PLACE}</span>
+        <MdPlace /><span className='place' style={{padding:"10px"}}>{props.EVENT_PLACE}</span>
       </Card.Meta>
       <Card.Description>
-        <span className='date'>{props.EVENT_BEGIN_DATE} ~ {props.EVENT_END_DATE}</span>
+       <MdCalendarToday /> <span className='date' style={{padding:"10px"}}>{moment(props.EVENT_BEGIN_DATE).format('YYYY-MM-DD')} ~ {moment(props.EVENT_END_DATE).format('YYYY-MM-DD')}</span>
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
+    <Favourite star={props.EVENT_CODE} />
      <span className='views'>{props.VIEWS}</span>
      <span className='downloads'>{props.DOWNLOADS}</span>
      <div id='hidden'>
