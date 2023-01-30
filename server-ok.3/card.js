@@ -60,7 +60,7 @@ app.get("/category", (req, res) => {
 })
 
 //Card 카드관심행사추가
-app.get("/favourite", (req,res) => {
+app.get("/cardfavourite", (req,res) => {
     console.log(req.query.star);
     var result = req.query.star;
     // const star = connection.query('select * from EVENT2 where EVENT_CODE='+result);
@@ -68,7 +68,7 @@ app.get("/favourite", (req,res) => {
     
     //const addStar = connection.query('insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE) values(?,?,?,?,?) select * from EVENT2 where EVENT_CODE='+result
     const addStar = connection.query(
-        'insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE) select EVENT_CODE, EVENT_NAME, EVENT_BEGIN_DATE, EVENT_END_DATE, EVENT_PLACE from EVENT2 where EVENT_CODE='+result+' AND NOT EXISTS(select EVENT_CODE from FAVOURITE_EVENT2 where EVENT_CODE='+result+');'
+        'insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE, FAVOURITE_EVENT_CATEGORY) select EVENT_CODE, EVENT_NAME, EVENT_BEGIN_DATE, EVENT_END_DATE, EVENT_PLACE, EVENT_CATEGORY from EVENT2 where EVENT_CODE='+result+' AND NOT EXISTS(select EVENT_CODE from FAVOURITE_EVENT2 where EVENT_CODE='+result+');'
         )
     
     console.log(addStar);
@@ -104,8 +104,10 @@ app.get("/userList", (req, res) => {
 
 
 //Favourite
-app.get("/favouriteList", (req,res) => {
-    const list = connection.query("select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVORITE_EVENT_PLACE from FAVOURITE_EVENT2 F inner JOIN EVENT2 E ON F.EVENT_CODE = E.EVENT_CODE")
+app.get("/favourite", (req,res) => {
+    const list = connection.query("select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVOURITE_EVENT_PLACE, F.FAVOURITE_EVENT_CATEGORY, E.EVENT_ACCOUNT from FAVOURITE_EVENT2 F inner JOIN EVENT2 E ON F.EVENT_CODE = E.EVENT_CODE")
+    console.log(list)
+    res.json(list)
 })
 
 

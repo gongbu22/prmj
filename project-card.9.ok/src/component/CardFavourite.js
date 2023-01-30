@@ -7,7 +7,7 @@ function Favourite(star) {
         const star = e.target.name;
         
         
-        axios.get("http://3.38.26.169:3001/favourite?star="+star ).then((res) => {
+        axios.get("http://3.38.26.169:3001/cardfavourite?star="+star ).then((res) => {
             console.log(res.data)
         })
     }

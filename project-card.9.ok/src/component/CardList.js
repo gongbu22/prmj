@@ -1,7 +1,7 @@
 import { Card, Image } from 'semantic-ui-react'
 import './CardModule.css';
 import CardModal from './CardModal';
-import Favourite from './CardFavourite';
+import CardFavourite from './CardFavourite';
 import { MdOutlineFestival, MdPlace, MdCalendarToday } from "react-icons/md";
 import moment from 'moment';
 
@@ -29,7 +29,7 @@ const CardExampleCard = (props) => (
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-    <Favourite star={props.EVENT_CODE} />
+    <CardFavourite star={props.EVENT_CODE} />
      <span className='views'>{props.VIEWS}</span>
      <span className='downloads'>{props.DOWNLOADS}</span>
      <div id='hidden'>
