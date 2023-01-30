@@ -1,7 +1,7 @@
 import { Card, Image } from 'semantic-ui-react'
 import './CardModule.css';
 import CardModal from './CardModal';
-import Favourite from './Favourite';
+import Favourite from './CardFavourite';
 import { MdOutlineFestival, MdPlace, MdCalendarToday } from "react-icons/md";
 import moment from 'moment';
 

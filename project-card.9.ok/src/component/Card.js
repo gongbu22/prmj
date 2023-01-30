@@ -32,34 +32,25 @@ const Cards = () => {
     };
 
     axios.post("http://3.38.26.169:3001/cardSearch", body).then((res) => {
-      setCards(res.data);
-      console.log(res.data);
+      setCards(temp);
+      // console.log(temp);
       //setCards(res.data);
-      console.log(cards);
+      // console.log(cards);
     });
   };
   
-  const searchevent1 = (e) => {
+  //category  //eventName이 검색창안으로 들어가게 수정하기
+  const searchevent = (e) => {
      e.preventDefault();
-    const eventName1= e.target.value
+    const eventName= e.target.value
     
-    axios.get("http://3.38.26.169:3001/category1?event1="+eventName1).then((res) => {
+    axios.get("http://3.38.26.169:3001/category?event="+eventName).then((res) => {
     
       setCards(res.data);
-      console.log(res.data);
+      console.log(cards);
     });
   }
   
-  const searchevent2 = (e) => {
-     e.preventDefault();
-    const eventName2= e.target.value
-    
-    axios.get("http://3.38.26.169:3001/category2?event2="+eventName2).then((res) => {
-    
-      setCards(res.data);
-      console.log(res.data);
-    });
-  }
   
 
   const card = cards.map((c) => (
@@ -88,8 +79,8 @@ const Cards = () => {
       </form>
       <div>
       카테고리:
-        <input type='button' onClick={searchevent1} value='보안' ></input>
-        <input type='button' onClick={searchevent2} value='공모전' ></input>
+        <input type='button' onClick={searchevent} value='보안' ></input>
+        <input type='button' onClick={searchevent} value='공모전' ></input>
       </div>
      </div>
         <div className="container">{card}</div>

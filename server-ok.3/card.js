@@ -52,19 +52,29 @@ app.post("/cardSearch", (req, res)=> {
     
 // })
 
-app.get("/category1", (req, res) => {
-    var eventName1 =req.query.event1
-    const event1 = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName1+'"')
-    console.log(req.query.event1)
-    res.json(event1)
+app.get("/category", (req, res) => {
+    var eventName =req.query.event
+    const event = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName+'"')
+    console.log(eventName)
+    res.json(event)
 })
 
-app.get("/category2", (req, res) => {
-    var eventName2 =req.query.event2
-    const event2 = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName2+'"')
-    console.log(req.query.event2)
-    res.json(event2)
+//Card 카드관심행사추가
+app.get("/favourite", (req,res) => {
+    console.log(req.query.star);
+    var result = req.query.star;
+    // const star = connection.query('select * from EVENT2 where EVENT_CODE='+result);
+    console.log(result[0]['EVENT_CATEGORY'])
+    
+    //const addStar = connection.query('insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE) values(?,?,?,?,?) select * from EVENT2 where EVENT_CODE='+result
+    const addStar = connection.query(
+        'insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE) select EVENT_CODE, EVENT_NAME, EVENT_BEGIN_DATE, EVENT_END_DATE, EVENT_PLACE from EVENT2 where EVENT_CODE='+result+' AND NOT EXISTS(select EVENT_CODE from FAVOURITE_EVENT2 where EVENT_CODE='+result+');'
+        )
+    
+    console.log(addStar);
+    
 })
+
 
 //AddEvent
 app.post("/add", (req, res)=> {
@@ -92,10 +102,10 @@ app.get("/userList", (req, res) => {
     res.json(list);
 })
 
-//favourite
-app.get("/favourite", (req,res) => {
-    console.log(req.query);
-    console.log("hi")
+
+//Favourite
+app.get("/favouriteList", (req,res) => {
+    const list = connection.query("select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVORITE_EVENT_PLACE from FAVOURITE_EVENT2 F inner JOIN EVENT2 E ON F.EVENT_CODE = E.EVENT_CODE")
 })
 
 

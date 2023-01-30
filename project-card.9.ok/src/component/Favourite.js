@@ -1,23 +1,14 @@
 import axios from 'axios';
+import {useState} from 'react';
 
-function Favourite(star) {
+const Favourite = () => {
     
-
-    const submit=(e)=>{
-        
-        
-        
-        axios.get("http://3.38.26.169:3001/favourite",  ).then((res) => {
-            console.log(res.data)
-        })
-    }
+    const [favourite, setFavourite] =useState([]);
     
-    return(
-        <div>
-        <form>
-        <input type='button' value={star.star} onClick={submit} style={{float: 'right'}}></input>
-        </form>
-        </div>
+    axios.get('http://3.38.26.169:3001/favouriteList')
+    
+    return (
+        <div></div>
     )
 }
 

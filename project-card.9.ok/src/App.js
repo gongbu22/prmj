@@ -1,8 +1,9 @@
-import styles from'./App.css';
+import './App.css';
 import Card from './component/Card';
 // import AddEvent from './component/AddEvent';
 import User from './component/User';
 import About from './component/About';
+import Favourite from './component/Favourite';
 import {Routes, Route, NavLink} from 'react-router-dom';
 
 const activeStyle = {
@@ -34,12 +35,20 @@ function App() {
           return isActive ? activeStyle : deactiveStyle;
         }}>About</NavLink>
         </li>
+        
+        <li>
+        <NavLink to="/favourite" style={({isActive}) => {
+          return isActive ? activeStyle : deactiveStyle;
+        }}>favourite</NavLink>
+        </li>
+        
       </ul>
       <hr />
       <Routes>
         <Route path="/" element={<Card />}></Route>
         <Route path="/user" element={<User />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/favourite" element={<Favourite />}></Route>
       </Routes>
     </div>
 
