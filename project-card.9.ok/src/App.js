@@ -4,6 +4,7 @@ import Nav from './component/Nav';
 import styled from 'styled-components';
 import {MdChildCare} from 'react-icons/md'
 import {NavLink} from 'react-router-dom';
+import Footer from './component/Footer';
 
 const activeStyle = {
   color: '#A9DD54',
@@ -19,7 +20,7 @@ const NavStyle = styled(NavLink) `
    padding: 20px;
    font-size: 40px;
    font-wight: 300;
-   margin: 5px;
+   margin: auto;
    margin-bottom: 10px;
    &:link {
      transition : 0.5s;
@@ -45,6 +46,9 @@ function App() {
       <body>
         <Nav />
       </body>
+     <footer>
+        <Footer />
+     </footer>
       
   </div>
 

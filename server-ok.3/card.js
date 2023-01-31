@@ -110,5 +110,13 @@ app.get("/favourite", (req,res) => {
     res.json(list)
 })
 
+//FavouriteDelete
+app.get("/favouriteDelete", (req,res) => {
+    console.log(req.query.star);
+    const star=(req.query.star);
+    const result = connection.query('delete from FAVOURITE_EVENT2 where FAVOURITE_EVENT_CODE='+star);
+    console.log("삭제")
+})
+
 
 module.exports=app;

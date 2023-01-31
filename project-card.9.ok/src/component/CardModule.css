@@ -7,8 +7,9 @@
     padding: 10px 10px 10px 10px;
     flex-wrap: wrap;
     display: flex;
-     margin: 30px;
-    margin-left: 50px;
+    margin: auto;
+    /*margin-left: 50px;*/
+    text-align: center;
 }
 
 .searchbox {
