@@ -1,8 +1,10 @@
 
 import axios from 'axios';
+import {NavLink, useNavigate } from 'react-router-dom';
 
 function Favourite(star) {
     
+    const navigate = useNavigate("");
 
     const submit=(e)=>{
         const star = e.target.name;
@@ -11,10 +13,9 @@ function Favourite(star) {
             axios.get("http://3.38.26.169:3001/favouriteDelete?star="+star ).then((res) => {
                 console.log(res.data)
                 
-                document.location.reload();
             });
         
-        
+        navigate("/favourite")
     }
     
     return(

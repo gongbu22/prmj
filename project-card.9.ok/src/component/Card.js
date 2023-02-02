@@ -20,34 +20,28 @@ const Cards = () => {
 
   const searchHandler = (s) => {
     s.preventDefault();
-    setSearch(s.target.value);  //입력하는동안 움직임이 있으니깐 setSearch가 작동해서 temp 에 저장된다.
+    setSearch(s.target.value); //입력하는동안 움직임이 있으니깐 setSearch가 작동해서 temp 에 저장된다.
   };
 
-  const submitHandler = (s) => {
-    s.preventDefault();
-    console.log(temp);
-
-    let body = {
-      searchName: temp,
-    };
-
-    axios.post("http://3.38.26.169:3001/cardSearch", body).then((res) => {
-      setCards(temp);
+  const submitHandler = (e) => {
+    const eventName= e.target.value
+    console.log(eventName)
+    // axios.get("http://3.38.26.169:3001/cardSearch?searchName="+eventName).then((res) => {
+    //   setCards(temp);
       // console.log(temp);
       //setCards(res.data);
       // console.log(cards);
-    });
+    // });
   };
   
   //category  //eventName이 검색창안으로 들어가게 수정하기
   const searchevent = (e) => {
      e.preventDefault();
-    const eventName= e.target.value
+    const value= e.target.value
     
-    axios.get("http://3.38.26.169:3001/category?event="+eventName).then((res) => {
-    
-      setCards(res.data);
-      console.log(cards);
+    axios.get("http://3.38.26.169:3001/cardSearch?event="+value).then((res) => {
+       setCards(res.data);
+      console.log(cards); 
     });
   }
   

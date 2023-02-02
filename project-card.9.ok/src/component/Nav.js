@@ -1,9 +1,11 @@
 import Card from './Card';
 // import AddEvent from './component/AddEvent';
 import User from './User';
-import About from './/About';
+import About from './About';
 import Favourite from './Favourite';
 import {Routes, Route, NavLink} from 'react-router-dom';
+import Admin from './Admin';
+import Login from './Login';
 
 const Nav =()=> {
     
@@ -42,6 +44,18 @@ const Nav =()=> {
           }}>favourite</NavLink>
           </li>
           
+          <li>
+          <NavLink to="/admin" style={({isActive}) => {
+            return isActive ? activeStyle : deactiveStyle;
+          }}>admin</NavLink>
+          </li>
+          
+          <li>
+          <NavLink to="/login" style={({isActive}) => {
+            return isActive ? activeStyle : deactiveStyle;
+          }}>login</NavLink>
+          </li>
+          
         </ul>
         <hr />
         <Routes>
@@ -49,6 +63,8 @@ const Nav =()=> {
           <Route path="/user" element={<User />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/favourite" element={<Favourite />}></Route>
+          <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
       </div>
     )

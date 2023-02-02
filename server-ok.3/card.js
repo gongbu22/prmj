@@ -29,17 +29,18 @@ let result = connection.query('select * from EVENT2');
 
 //Card
 app.get("/cardList", (req, res)=> {
-    const result = connection.query('select * from EVENT2')
+    const result = connection.query('select * from EVENT2 where RUBLIC="YES";')
   
     res.json(result)
 })
 
-app.post("/cardSearch", (req, res)=> {
-    const search =req.body.searchName;
+app.get("/cardSearch", (req, res)=> {
+    const search =req.query.event;
     console.log(search);
-    const result = connection.query("select * from EVENT2 where EVENT_NAME like '%"+search+"%'")
+    const result = connection.query("select * from EVENT2 where EVENT_CATEGORY like '%"+search+"%'")
     res.json(result);
     console.log(result);
+    // console.log(result);
     // const searchName = connection.query('select EVENT_NAME from EVENT_INFO')
     // res.json(searchName);
 })
@@ -105,7 +106,7 @@ app.get("/userList", (req, res) => {
 
 //Favourite
 app.get("/favourite", (req,res) => {
-    const list = connection.query("select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVOURITE_EVENT_PLACE, F.FAVOURITE_EVENT_CATEGORY, E.EVENT_ACCOUNT from FAVOURITE_EVENT2 F inner JOIN EVENT2 E ON F.EVENT_CODE = E.EVENT_CODE")
+    const list = connection.query('select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVOURITE_EVENT_PLACE, F.FAVOURITE_EVENT_CATEGORY, E.EVENT_ACCOUNT from FAVOURITE_EVENT2 F, EVENT2 E WHERE F.EVENT_CODE = E.EVENT_CODE AND E.RUBLIC="YES"')
     console.log(list)
     res.json(list)
 })
@@ -118,5 +119,38 @@ app.get("/favouriteDelete", (req,res) => {
     console.log("삭제")
 })
 
+//Admin
+app.get("/admin", (req, res)=> {
+    const result = connection.query('select * from EVENT2')
+    // console.log("성공")
+    res.json(result)
+})
+
+//AdminDelete
+app.get("/adminDelete", (req,res) => {
+    console.log(req.query.star);
+    const star=(req.query.star);
+    const result = connection.query('delete from EVENT2 where EVENT_CODE='+star);
+    console.log("삭제")
+    res.json(result)
+})
+
+//AdminApprove
+app.get("/Approve", (req, res) => {
+    console.log(req.query.approveStar)
+    const approveStar=(req.query.approveStar)
+    const result = connection.query('update EVENT2 set RUBLIC="YES" where EVENT_CODE="'+approveStar+'"')
+    console.log(result);
+})
+
+
+//AdminNoApprove
+app.get("/noApprove", (req, res) => {
+    console.log(req.query.noApproveStar)
+    const noApproveStar=(req.query.noApproveStar)
+    // const result=connection.query('select RUBLIC from EVENT2 where EVENT_CODE="'+noApproveStar+'"')
+    const result = connection.query('update EVENT2 set RUBLIC="NO" where EVENT_CODE="'+noApproveStar+'"')
+    console.log(result);
+})
 
 module.exports=app;
