@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardList from "./CardList";
 import './CardModule.css';
 import { MdSearch } from "react-icons/md";
+import Paging from './Paging';
 
 
 
@@ -11,12 +12,32 @@ const Cards = () => {
  
   const [cards, setCards] = useState([]);
   const [temp, setSearch] = useState([]);
+  
+  const [count, setCount] = useState(0); // 아이템 총 개수
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지. default 값으로 1
+  const [postPerPage] = useState(5); // 한 페이지에 보여질 아이템 수 
+  const [indexOfLastPost, setIndexOfLastPost] = useState(0); // 현재 페이지의 마지막 아이템 인덱스
+  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0); // 현재 페이지의 첫번째 아이템 인덱스
+  const [currentPosts, setCurrentPosts] = useState(0); // 현재 페이지에서 보여지는 아이템들
 
-
+  
+  //보여줄 포스트
+  useEffect(()=>{
+    
     axios.get("http://3.38.26.169:3001/cardList").then((res) => {
       // console.log(res)
       setCards(res.data);
     });
+    
+    setCount(cards.length);
+    setIndexOfLastPost(currentPage * postPerPage);
+    setIndexOfFirstPost(indexOfLastPost - postPerPage);
+    setCurrentPosts(cards.slice(indexOfFirstPost, indexOfLastPost));
+  }, [currentPage, indexOfLastPost, indexOfFirstPost, cards, postPerPage]);
+
+  const setPage = (error) => {
+    setCurrentPage(error);
+  };
 
   const searchHandler = (s) => {
     s.preventDefault();
@@ -77,8 +98,14 @@ const Cards = () => {
         <input type='button' onClick={searchevent} value='공모전' ></input>
       </div>
      </div>
+      <div>
+        {currentPosts && cards.length > 0 ? (
         <div className="container">{card}</div>
-        
+        ) : (
+        <div> No posts.</div>
+        )}
+         <Paging page={currentPage} count={count} setPage={setPage} />
+      </div>  
     </div>
   );
 };

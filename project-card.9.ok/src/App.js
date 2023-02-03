@@ -6,14 +6,6 @@ import {MdChildCare} from 'react-icons/md'
 import {NavLink} from 'react-router-dom';
 import Footer from './component/Footer';
 
-const activeStyle = {
-  color: '#A9DD54',
-  textDecoration: 'underline'
-}
-const deactiveStyle = {
-  color: 'black',
-  textDecoration: 'none'
-}
 
 const NavStyle = styled(NavLink) `
    color: #A9DD54;

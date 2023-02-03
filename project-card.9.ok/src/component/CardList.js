@@ -4,14 +4,17 @@ import CardModal from './CardModal';
 import CardFavourite from './CardFavourite';
 import { MdOutlineFestival, MdPlace, MdCalendarToday } from "react-icons/md";
 import moment from 'moment';
-
+import Paging from './Paging';
+ //semaintic-ui style적용
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
 styleLink.href = 
 "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
 document.head.appendChild(styleLink);
 
-const CardExampleCard = (props) => (
+const CardExampleCard = (props) => {
+  
+  return(
   <Card key={props.EVENT_CODE} style={{margin: "30px"}} >
     <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
     <Card.Content>
@@ -40,6 +43,7 @@ const CardExampleCard = (props) => (
     </Card.Content>
     <CardModal code={props}/>
   </Card>
-)
+  )
+}
 
 export default CardExampleCard

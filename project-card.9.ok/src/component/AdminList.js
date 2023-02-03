@@ -4,8 +4,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import moment from 'moment';
 import './AdminModule.css';
-import {Routes, Route, NavLink} from 'react-router-dom';
-import {MdAccountBox, MdPlace, MdDateRange, MdOutlineContentPaste, MdOutlineCategory, MdCheckCircle, MdNotInterested} from 'react-icons/md';
+import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
 
 function ModalExampleModal() {
   const [open, setOpen] = React.useState(false)

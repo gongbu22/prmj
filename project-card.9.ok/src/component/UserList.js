@@ -1,5 +1,5 @@
 import './UserListModule.css';
-import {MdAccountBox, MdPlace, MdDateRange, MdOutlineContentPaste, MdOutlineCategory} from 'react-icons/md';
+import {MdAccountBox, MdDateRange, MdOutlineCategory} from 'react-icons/md';
 
 const UserList =({list}) => {
     return (
