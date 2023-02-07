@@ -37,7 +37,7 @@ app.get("/cardList", (req, res)=> {
 app.post("/cardSearch", (req, res)=> {
     const search =req.body.searchName;
     console.log(search);
-    const result = connection.query("select * from EVENT2 where EVENT_NAME like '%"+search+"%' and RUBLIC='YES';")
+    const result = connection.query("select * from EVENT2 where EVENT_NAME like '%"+search+"%' and RUBLIC='YES' order by EVENT_CODE desc;")
     res.json(result);
     console.log(result);
     // console.log(result);
@@ -91,7 +91,7 @@ app.post("/add", (req, res)=> {
 })
 
 app.get("/userList", (req, res) => {
-    const list = connection.query("select * from EVENT2")
+    const list = connection.query("select * from EVENT2 order by EVENT_CODE desc")
     console.log(list);
     res.json(list);
 })

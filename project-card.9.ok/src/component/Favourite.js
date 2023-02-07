@@ -6,13 +6,16 @@ import moment from 'moment';
 import './ListModule.css';
 import FavouriteList from './FavouriteList';
 import Pagination from './Pagination';
+import {useNavigate} from 'react-router-dom';
 
 function ModalExampleModal() {
   
   const [favourite, setFavourite] =useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+  
+   let navigate = useNavigate();
   
   useEffect(() => {
         axios.get('http://3.38.26.169:3001/favourite').then((res) => {
@@ -36,11 +39,13 @@ function ModalExampleModal() {
   return (
     <div>
     <FavouriteList favourite={currentPosts(favourite)}/>
+    <div className="pagination">
     <Pagination 
         postsPerPage={postsPerPage}
         totalPosts={favourite.length}
         paginate={setCurrentPage}
       />
+    </div>
     </div>
   )
 }

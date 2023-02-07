@@ -28,3 +28,8 @@
     float:left;
     margin-left: 50px;
 }
+
+.pagination {
+    display : flex; 
+    justify-content : center;
+}

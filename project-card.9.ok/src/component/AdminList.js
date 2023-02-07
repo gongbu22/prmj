@@ -5,9 +5,11 @@ import {useState, useEffect} from 'react';
 import moment from 'moment';
 import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
 import './ListModule.css';
+import {useNavigate} from 'react-router-dom';
 
 function ModalExampleModal({admin}) {
   const [open, setOpen] = React.useState(false)
+  let navigate = useNavigate();
   
     //delete
    const listDelete=(e)=>{
@@ -18,6 +20,10 @@ function ModalExampleModal({admin}) {
                 console.log(res.data)
                 
             });
+      alert("삭제되었습니다.")
+      
+      navigate("/admin")
+      window.location.reload()
 
     } 
     
@@ -30,6 +36,9 @@ function ModalExampleModal({admin}) {
       })
       
       alert("승인되었습니다.")
+      
+      navigate("/admin")
+      window.location.reload() // 새로고침 내장함수 추가!
     }
     
     //noApprove
@@ -41,6 +50,9 @@ function ModalExampleModal({admin}) {
       })
       
       alert("승인취소되었습니다.")
+      
+      navigate("/admin")
+      window.location.reload() // 새로고침 내장함수 추가!
     }
 
   return (

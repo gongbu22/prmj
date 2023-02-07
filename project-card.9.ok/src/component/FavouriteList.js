@@ -5,9 +5,11 @@ import {useState, useEffect} from 'react';
 import moment from 'moment';
 import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
 import './ListModule.css';
+import {useNavigate} from 'react-router-dom';
 
 function FavouriteList({favourite}) {
   const [open, setOpen] = React.useState(false)
+  let navigate = useNavigate();
 
   const submit=(e)=>{
         const star = e.target.name;
@@ -16,6 +18,11 @@ function FavouriteList({favourite}) {
                 console.log(res.data)
                 
             });
+            
+        alert("관심행사가 삭제되었습니다.")
+      
+      navigate("/favourite")
+      window.location.reload()
     }
     
   return (

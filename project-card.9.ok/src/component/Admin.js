@@ -34,11 +34,13 @@ function ModalExampleModal() {
   return (
      <div>
       <AdminList admin={currentPosts(admin)}/>
-      <Pagination 
-        postsPerPage={postsPerPage}
-        totalPosts={admin.length}
-        paginate={setCurrentPage}
-      />
+      <div className="pagination">
+        <Pagination 
+          postsPerPage={postsPerPage}
+          totalPosts={admin.length}
+          paginate={setCurrentPage}
+        />
+      </div>
      </div>
   )
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CardList from "./CardList";
 import './CardModule.css';
 import Pagination from './Pagination';
+import './ListModule.css';
 
 
 
@@ -63,13 +64,13 @@ const Cards = () => {
       </form>
      </div>
         <CardList card={currentPosts(cards)}/>
-        <Pagination 
-        postsPerPage={postsPerPage}
-        totalPosts={cards.length}
-        paginate={setCurrentPage}
-        />
-        
-        
+        <div className="pagination">
+          <Pagination 
+          postsPerPage={postsPerPage}
+          totalPosts={cards.length}
+          paginate={setCurrentPage}
+          />
+        </div>
     </div>
   );
 };

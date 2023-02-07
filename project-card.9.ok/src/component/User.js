@@ -30,11 +30,13 @@ function User() {
         <div>
             <UserAdd />
             <UserList list={currentPosts(lists)}/>
+            <div className="pagination">
             <Pagination 
             postsPerPage={postsPerPage}
             totalPosts={lists.length}
             paginate={setCurrentPage}
             />
+            </div>
         </div>
     )
 }

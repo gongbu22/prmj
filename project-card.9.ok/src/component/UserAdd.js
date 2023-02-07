@@ -1,9 +1,10 @@
 import {React, useState } from "react";
 import axios from "axios";
 import './UserAddModule.css';
+import {useNavigate} from 'react-router-dom';
 
 const UserAdd =() => {
-    
+    let navigate = useNavigate();
     //변수선언
     const [Name, SetName] = useState("");
     const [BeginDate, SetBeginDate] = useState("");
@@ -72,6 +73,8 @@ const UserAdd =() => {
       .then((res) => console.log(res));
       
     alert("행사가 등록되었습니다. 승인을 기다려주세요.")
+    navigate("/user")
+    window.location.reload()
     
     reset();
   };
