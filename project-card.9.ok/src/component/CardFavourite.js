@@ -10,6 +10,8 @@ function Favourite(star) {
         axios.get("http://3.38.26.169:3001/cardfavourite?star="+star ).then((res) => {
             console.log(res.data)
         })
+        
+        alert("관심행사에 추가되었습니다.")
     }
     
     return(

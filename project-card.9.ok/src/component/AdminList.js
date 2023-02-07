@@ -3,8 +3,8 @@ import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import moment from 'moment';
-import './AdminModule.css';
 import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
+import './ListModule.css';
 
 function ModalExampleModal() {
   const [open, setOpen] = React.useState(false)
@@ -67,10 +67,10 @@ function ModalExampleModal() {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-      <div className = 'favouriteList' >
-      <div className= 'favouriteTwo'>
-        <div className='favouriteCategory'><b>{f.EVENT_CATEGORY}</b></div>
-        <div className='favouriteName' ><h3>{f.EVENT_NAME}</h3> </div>
+      <div className = 'list' >
+      <div className= 'listTwo'>
+        <div className='listCategory'><b>{f.EVENT_CATEGORY}</b></div>
+        <div className='listName' ><h3>{f.EVENT_NAME}</h3> </div>
         <div>{f.RUBLIC==="YES" ? <p><MdCheckCircle />승인</p>:<p><MdNotInterested />승인요청중</p>}</div>
       </div>
       <Button style={{color:'white', background:'#A9DD54', width:'100px', height: '30px', float:'right', margin:'auto'}}> detail </Button>

@@ -33,11 +33,11 @@ app.get("/cardList", (req, res)=> {
   
     res.json(result)
 })
-
-app.get("/cardSearch", (req, res)=> {
-    const search =req.query.event;
+ //카드 검색
+app.post("/cardSearch", (req, res)=> {
+    const search =req.body.searchName;
     console.log(search);
-    const result = connection.query("select * from EVENT2 where EVENT_CATEGORY like '%"+search+"%'")
+    const result = connection.query("select * from EVENT2 where EVENT_NAME like '%"+search+"%' and RUBLIC='YES';")
     res.json(result);
     console.log(result);
     // console.log(result);
@@ -45,13 +45,6 @@ app.get("/cardSearch", (req, res)=> {
     // res.json(searchName);
 })
 
-// app.get("/cardModal/:code", (req, res) => {
-//     console.log(req.params.code);
-//     const code = req.params.code;
-//     const result = connection.query("select * from EVENT where EVENT_CODE='"+code+"'")
-//     res.json(result);
-    
-// })
 
 app.get("/category", (req, res) => {
     var eventName =req.query.event

@@ -1,7 +1,7 @@
 import Card from './Card';
 // import AddEvent from './component/AddEvent';
 import User from './User';
-import About from './About';
+import MyPage from './MyPage';
 import Favourite from './Favourite';
 import {Routes, Route, NavLink} from 'react-router-dom';
 import Admin from './Admin';
@@ -32,11 +32,7 @@ const Nav =()=> {
           }}>User</NavLink>
           </li>
   
-          <li>
-          <NavLink to="/about" style={({isActive}) => {
-            return isActive ? activeStyle : deactiveStyle;
-          }}>About</NavLink>
-          </li>
+          
           
           <li>
           <NavLink to="/favourite" style={({isActive}) => {
@@ -56,12 +52,14 @@ const Nav =()=> {
           }}>login</NavLink>
           </li>
           
+           
+          
         </ul>
         <hr />
         <Routes>
           <Route exact path="/" element={<Card />}></Route>
           <Route path="/user" element={<User />}></Route>
-          <Route path="/about" element={<About />}></Route>
+         
           <Route path="/favourite" element={<Favourite />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/login" element={<Login />}></Route>

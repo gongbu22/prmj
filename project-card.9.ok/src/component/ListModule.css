@@ -1,4 +1,4 @@
-.favouriteList {
+.list {
     border: 3px solid lightgray;
     margin:auto;
     margin-top:10px;
@@ -9,11 +9,11 @@
     border-radius: 30px;
 }
 
-.favouriteTwo {
+.listTwo {
     float: left;
 }
 
-.favouriteCategory {
+.listCategory {
     float:left;
     border: none;
     margin:5px;
@@ -24,7 +24,7 @@
     color:white;
 }
 
-.favouriteName {
+.listName {
     float:left;
     margin-left: 50px;
 }
