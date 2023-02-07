@@ -6,19 +6,9 @@ import moment from 'moment';
 import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
 import './ListModule.css';
 
-function ModalExampleModal() {
+function ModalExampleModal({admin}) {
   const [open, setOpen] = React.useState(false)
   
-  const [admin, setAdmin] =useState([]);
-  
-  useEffect(() => {
-        axios.get('http://3.38.26.169:3001/admin').then((res) => {
-            setAdmin(res.data);
-            console.log(admin);
-            
-        });  
-    },'');
-    
     //delete
    const listDelete=(e)=>{
         const star = e.target.name;
@@ -52,7 +42,6 @@ function ModalExampleModal() {
       
       alert("승인취소되었습니다.")
     }
-    
 
   return (
      <div>

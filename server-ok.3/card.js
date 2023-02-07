@@ -29,7 +29,7 @@ let result = connection.query('select * from EVENT2');
 
 //Card
 app.get("/cardList", (req, res)=> {
-    const result = connection.query('select * from EVENT2 where RUBLIC="YES";')
+    const result = connection.query('select * from EVENT2 where RUBLIC="YES" order by EVENT_CODE desc;')
   
     res.json(result)
 })
@@ -99,7 +99,7 @@ app.get("/userList", (req, res) => {
 
 //Favourite
 app.get("/favourite", (req,res) => {
-    const list = connection.query('select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVOURITE_EVENT_PLACE, F.FAVOURITE_EVENT_CATEGORY, E.EVENT_ACCOUNT from FAVOURITE_EVENT2 F, EVENT2 E WHERE F.EVENT_CODE = E.EVENT_CODE AND E.RUBLIC="YES"')
+    const list = connection.query('select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVOURITE_EVENT_PLACE, F.FAVOURITE_EVENT_CATEGORY, E.EVENT_ACCOUNT from FAVOURITE_EVENT2 F, EVENT2 E WHERE F.EVENT_CODE = E.EVENT_CODE AND E.RUBLIC="YES" order by F.FAVOURITE_EVENT_CODE desc')
     console.log(list)
     res.json(list)
 })
@@ -114,7 +114,7 @@ app.get("/favouriteDelete", (req,res) => {
 
 //Admin
 app.get("/admin", (req, res)=> {
-    const result = connection.query('select * from EVENT2')
+    const result = connection.query('select * from EVENT2 order by EVENT_CODE desc')
     // console.log("성공")
     res.json(result)
 })

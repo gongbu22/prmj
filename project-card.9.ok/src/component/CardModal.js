@@ -20,7 +20,6 @@ function ModalExampleModal(code) {
       <Modal.Header>{code.code.HOST}상세페이지</Modal.Header>
       <div>조회수: {count}</div>
       <Modal.Content image>
-        <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
         <Modal.Description>
           <Header>카테고리: {code.code.EVENT_CATEGORY}  </Header>
           <p>공연 이름:  {code.code.EVENT_NAME}</p>

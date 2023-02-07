@@ -3,13 +3,16 @@ import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import moment from 'moment';
-import FavouriteDelete from './FavouriteDelete';
 import './ListModule.css';
+import FavouriteList from './FavouriteList';
+import Pagination from './Pagination';
 
 function ModalExampleModal() {
-  const [open, setOpen] = React.useState(false)
   
   const [favourite, setFavourite] =useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(1);
   
   useEffect(() => {
         axios.get('http://3.38.26.169:3001/favourite').then((res) => {
@@ -19,45 +22,25 @@ function ModalExampleModal() {
         });  
     },'');
     
-    
+  
+   /* 새로 추가한 부분 */
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  const currentPosts = (favourite) => {
+    let currentPosts = 0;
+    currentPosts = favourite.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
     
 
   return (
     <div>
-        {favourite.map((f)=> (
-    
-    <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
-      trigger={
-      <div className = 'list' >
-      <div className= 'listTwo'>
-        <div className='listCategory'><b>{f.FAVOURITE_EVENT_CATEGORY}</b></div>
-        <div className='listName' ><h3>{f.FAVOURITE_EVENT_NAME}</h3> </div>
-      </div>
-      <Button style={{color:'white', background:'#A9DD54', width:'100px', height: '30px', float:'right', margin:'auto'}}> detail </Button>
-      </div>}
-    >
-      <Modal.Header>{f.FAVOURITE_EVENT_NAME} 상세페이지</Modal.Header>
-      <Modal.Content image>
-        <Image size='medium' src='' wrapped />
-        <Modal.Description>
-          <Header>행사카테고리: {f.FAVOURITE_EVENT_CATEGORY}</Header>
-          <p>행사이름: {f.FAVOURITE_EVENT_NAME}</p>
-          <p>행사장소: {f.FAVOURITE_EVENT_PLACE}</p>
-          <p>행사날짜: {moment(f.FAVOURITE_EVENT_BEGIN_DATE).format('YYYY-MM-DD')} ~ {moment(f.FAVOURITE_EVENT_END_DATE).format('YYYY-MM-DD')}</p>
-          <p>행사설명: {f.EVENT_ACCOUNT}</p>
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-      <FavouriteDelete star={f.FAVOURITE_EVENT_CODE}/>
-        <Button style={{background:'#A9DD54', color: 'white'}} onClick={() => setOpen(false)}>
-          닫기
-        </Button>
-      </Modal.Actions>
-    </Modal>
-    ))}
+    <FavouriteList favourite={currentPosts(favourite)}/>
+    <Pagination 
+        postsPerPage={postsPerPage}
+        totalPosts={favourite.length}
+        paginate={setCurrentPage}
+      />
     </div>
   )
 }

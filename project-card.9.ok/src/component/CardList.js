@@ -1,6 +1,7 @@
 import { Card, Image } from 'semantic-ui-react'
 import './CardModule.css';
 import CardModal from './CardModal'
+import CardFavourite from './CardFavourite';
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -14,7 +15,6 @@ const CardExampleCard = ({card}) => {
     <div>
     {card.map((card)=> (
         <Card key={card.EVENT_CODE} style={{margin: "30px"}} >
-        <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
         <Card.Content>
           <Card.Meta>
             <span className='category'>{card.EVENT_CATEGORY}</span>
@@ -30,6 +30,7 @@ const CardExampleCard = ({card}) => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
+        <CardFavourite star={card.EVENT_CODE} />
          <span className='views'>{card.VIEWS}</span>
          <span className='downloads'>{card.DOWNLOADS}</span>
          <div id='hidden'>

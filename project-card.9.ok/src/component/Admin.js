@@ -1,9 +1,46 @@
-import AdminList from './AdminList';
+import React from 'react'
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+import './ListModule.css';
+import AdminList from './AdminList'
+import Pagination from './Pagination';
 
-function Admin() {
-  return(
-    <AdminList />  
+function ModalExampleModal() {
+  const [open, setOpen] = React.useState(false)
+  
+  const [admin, setAdmin] =useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+  
+  useEffect(() => {
+        axios.get('http://3.38.26.169:3001/admin').then((res) => {
+            setAdmin(res.data);
+            console.log(admin);
+            
+        });  
+    },'');
+  
+  /* 새로 추가한 부분 */
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  const currentPosts = (admin) => {
+    let currentPosts = 0;
+    currentPosts = admin.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
+    
+
+  return (
+     <div>
+      <AdminList admin={currentPosts(admin)}/>
+      <Pagination 
+        postsPerPage={postsPerPage}
+        totalPosts={admin.length}
+        paginate={setCurrentPage}
+      />
+     </div>
   )
 }
 
-export default Admin;
+export default ModalExampleModal
