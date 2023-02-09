@@ -6,67 +6,55 @@ import {useNavigate} from 'react-router-dom';
 const UserAdd =() => {
     let navigate = useNavigate();
     //변수선언
-    const [Name, SetName] = useState("");
+    const [WebsiteList, SetWebsiteList] = useState("");
+    const [CourseName, SetCourseName] = useState("");
     const [BeginDate, SetBeginDate] = useState("");
-    const [EndDate, SetEndDate] = useState("");
-    const [Place, SetPlace] = useState("");
-    const [Host, SetHost] = useState("");
-    const [Region, SetRegion] = useState("");
-    const [Account, SetAccount] = useState("");
-    const [Category, SetCategory] = useState("");
+    const [CourseDuration, SetCourseDuration] = useState("");
+    const [Description, SetDescription] = useState("");
+    const [Website, SetWebsite] = useState("");
 
   //값넣기
   
-  const nameHandler = (e) => {
+  const WebsiteListHandler = (e) => {
     e.preventDefault();
-    SetName(e.target.value);
+    SetWebsiteList(e.target.value);
   };
-  const beginHandler = (e) => {
+  const CourseNameHandler = (e) => {
+    e.preventDefault();
+    SetCourseName(e.target.value);
+  };
+  const BeginDateHandler = (e) => {
     e.preventDefault();
     SetBeginDate(e.target.value);
   };
-  const endHandler = (e) => {
+  const CourseDurationHandler = (e) => {
     e.preventDefault();
-    SetEndDate(e.target.value);
+    SetCourseDuration(e.target.value);
   };
-  const placeHandler = (e) => {
+  const DescriptionHandler = (e) => {
     e.preventDefault();
-    SetPlace(e.target.value);
+    SetDescription(e.target.value);
   };
-  const hostHandler = (e) => {
+  const WebsiteHandler = (e) => {
     e.preventDefault();
-    SetHost(e.target.value);
+    SetWebsite(e.target.value);
   };
-  const regionHandler = (e) => {
-    e.preventDefault();
-    SetRegion(e.target.value);
-  };
-  const accountHandler = (e) => {
-    e.preventDefault();
-    SetAccount(e.target.value);
-  };
-  const categoryHandler = (e) => {
-    e.preventDefault();
-    SetCategory(e.target.value);
-  };
-  
+ 
   
 
   const submitHandler = (e) => {
     e.preventDefault();
     // state에 저장한 값을 가져옵니다.
-   console.log(Name)
-
-    let body = {
-      name: Name,
-      beginDate: BeginDate,
-      endDate: EndDate,
-      place: Place,
-      host: Host,
-      region: Region,
-      account: Account,
-      category: Category,
+   
+   let body = {
+      WEBSITE_LIST:WebsiteList ,
+      COURSE_NAME:CourseName ,
+      BEGIN_DATE:BeginDate ,
+      COURSE_DURATION:CourseDuration,
+      DESCRIPTION:Description,
+      WEBSITE:Website
     };
+
 
     axios
       .post("http://3.38.26.169:3001/add", body)
@@ -79,15 +67,14 @@ const UserAdd =() => {
     reset();
   };
   
+  
   const reset = (e) => {
-    SetName("");
+    SetWebsiteList("");
+    SetCourseName("");
     SetBeginDate("");
-    SetEndDate("");
-    SetPlace("");
-    SetHost("");
-    SetRegion("");
-    SetAccount("");
-    SetCategory("");
+    SetCourseDuration("");
+    SetDescription("");
+    SetWebsite("");
   }
   
 
@@ -101,40 +88,30 @@ const UserAdd =() => {
           >
           <div className='top'>
             <div className='topTop'>
-              <label><b>행사이름 :  </b></label>
-              <input type="text" value={Name} onChange={nameHandler} className="input"></input>
+              <label><b>사이트명 :  </b></label>
+              <input type="text" value={WebsiteList} onChange={WebsiteListHandler} className="input"></input>
             </div>
             <div className='topMiddle'>
-              <label><b>시작날짜 :  </b></label>
-              <input type="text" value={BeginDate} onChange={beginHandler} className="input"></input>
+              <label><b>교육과정명 :  </b></label>
+              <input type="text" value={CourseName} onChange={CourseNameHandler} className="input"></input>
             </div>
             <div className='topBottom'>
-              <label><b>종료날짜 :  </b></label>
-              <input type="text" value={EndDate} onChange={endHandler} className="input"></input>
+              <label><b>교육과정수업날 :  </b></label>
+              <input type="text" value={BeginDate} onChange={BeginDateHandler} className="input"></input>
             </div>
           </div>
           <div className='middle'>
             <div className='middleTop'>
-              <label><b>장소 :  </b></label>
-              <input type="text" value={Place} onChange={placeHandler} className="input place"></input>
+              <label><b>교육과정기간 :  </b></label>
+              <input type="text" value={CourseDuration} onChange={CourseDurationHandler} className="input place"></input>
             </div>
             <div className='middleMiddle'> 
-              <label><b>주최:  </b></label>
-              <input type="text" value={Host} onChange={hostHandler} className="input"></input>
+              <label><b>교육과정 설명:  </b></label>
+              <input type="text" value={Description} onChange={DescriptionHandler} className="input"></input>
             </div>
             <div className='middleBottom'>
-              <label><b>지역:  </b></label>
-              <input type="text" value={Region} onChange={regionHandler} className="input"></input>
-            </div>
-          </div>
-          <div className='bottom'>
-            <div className='bottomTop'>
-              <label><b>설명 :  </b></label>
-              <input type="text" value={Account} onChange={accountHandler} className="input account"></input>
-            </div>
-            <div className='bottomMiddle'>
-              <label><b>카테고리:  </b></label>
-              <input type="text" value={Category} onChange={categoryHandler} className="input"></input>
+              <label><b>사이트주소:  </b></label>
+              <input type="text" value={Website} onChange={WebsiteHandler} className="input"></input>
             </div>
           </div>
             <div className='bottomBottom'>

@@ -24,20 +24,21 @@ app.listen(port, ()=>{
 })
 
 //디비 확인
-let result = connection.query('select * from EVENT2');
+let result = connection.query('select * from IT_EDU');
 //console.log(result);
 
 //Card
 app.get("/cardList", (req, res)=> {
-    const result = connection.query('select * from EVENT2 where RUBLIC="YES" order by EVENT_CODE desc;')
+    const result = connection.query('select * from IT_EDU where PUBLICITY="YES" order by EDU_CODE desc;')
   
     res.json(result)
+    // console.log(JSON.stringify({result}));
 })
  //카드 검색
 app.post("/cardSearch", (req, res)=> {
     const search =req.body.searchName;
     console.log(search);
-    const result = connection.query("select * from EVENT2 where EVENT_NAME like '%"+search+"%' and RUBLIC='YES' order by EVENT_CODE desc;")
+    const result = connection.query("select * from IT_EDU where COURSE_NAME like '%"+search+"%' and PUBLICITY='YES' order by EDU_CODE desc;")
     res.json(result);
     console.log(result);
     // console.log(result);
@@ -45,10 +46,10 @@ app.post("/cardSearch", (req, res)=> {
     // res.json(searchName);
 })
 
-
+//api작성해야함======================
 app.get("/category", (req, res) => {
     var eventName =req.query.event
-    const event = connection.query('select * from EVENT2 where EVENT_CATEGORY="'+eventName+'"')
+    const event = connection.query('select * from IT_EDU where WEBSITE_LIST="'+eventName+'"')
     console.log(eventName)
     res.json(event)
 })
@@ -58,14 +59,17 @@ app.get("/cardfavourite", (req,res) => {
     console.log(req.query.star);
     var result = req.query.star;
     // const star = connection.query('select * from EVENT2 where EVENT_CODE='+result);
-    console.log(result[0]['EVENT_CATEGORY'])
+    console.log(result[0]['WEBSITE_LIST'])
     
     //const addStar = connection.query('insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE) values(?,?,?,?,?) select * from EVENT2 where EVENT_CODE='+result
     const addStar = connection.query(
-        'insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE, FAVOURITE_EVENT_CATEGORY) select EVENT_CODE, EVENT_NAME, EVENT_BEGIN_DATE, EVENT_END_DATE, EVENT_PLACE, EVENT_CATEGORY from EVENT2 where EVENT_CODE='+result+' AND NOT EXISTS(select EVENT_CODE from FAVOURITE_EVENT2 where EVENT_CODE='+result+');'
+        'insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME) select EDU_CODE, WEBSITE_LIST, COURSE_NAME from IT_EDU where EDU_CODE='+result+' AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE='+result+');'
         )
     
-    console.log(addStar);
+    console.log("추가")
+    const fAll= connection.query("select * from FAVOURITE_COURSE")
+    
+    res.json(fAll)
     
 })
 
@@ -74,24 +78,26 @@ app.get("/cardfavourite", (req,res) => {
 app.post("/add", (req, res)=> {
     const add = req.body;
     
-    const result = connection.query("insert into EVENT2(EVENT_NAME, EVENT_BEGIN_DATE, EVENT_END_DATE, EVENT_PLACE, EVENT_HOST, EVENT_REGION, EVENT_ACCOUNT, EVENT_CATEGORY ) values(?,?,?,?,?,?,?,?);"
+    const result = connection.query("insert into IT_EDU(WEBSITE_LIST, COURSE_NAME, BEGIN_DATE, COURSE_DURATION, DESCRIPTION, WEBSITE ) values(?,?,?,?,?,?);"
         ,[
             // add['code'],
-            add['name'],
-            add['beginDate'],
-            add['endDate'],
-            add['place'],
-            add['host'],
-            add['region'],
-            add['account'],
-            add['category']
+            add['WEBSITE_LIST'],
+            add['COURSE_NAME'],
+            add['BEGIN_DATE'],
+            add['COURSE_DURATION'],
+            add['DESCRIPTION'],
+            add['WEBSITE']
         ]
         )
     console.log(result);
+    
+    const all = connection.query("select * from IT_EDU")
+    res.json(all)
 })
 
+//api작성해야함==========================================
 app.get("/userList", (req, res) => {
-    const list = connection.query("select * from EVENT2 order by EVENT_CODE desc")
+    const list = connection.query("select * from IT_EDU order by EDU_CODE desc")
     console.log(list);
     res.json(list);
 })
@@ -99,7 +105,7 @@ app.get("/userList", (req, res) => {
 
 //Favourite
 app.get("/favourite", (req,res) => {
-    const list = connection.query('select F.FAVOURITE_EVENT_CODE, F.FAVOURITE_EVENT_NAME, F.FAVOURITE_EVENT_BEGIN_DATE, F.FAVOURITE_EVENT_END_DATE, F.FAVOURITE_EVENT_PLACE, F.FAVOURITE_EVENT_CATEGORY, E.EVENT_ACCOUNT from FAVOURITE_EVENT2 F, EVENT2 E WHERE F.EVENT_CODE = E.EVENT_CODE AND E.RUBLIC="YES" order by F.FAVOURITE_EVENT_CODE desc')
+    const list = connection.query('select F.FCOURSE_CODE, F.WEBSITE_LIST, F.COURSE_NAME, E.BEGIN_DATE, E.COURSE_DURATION, E.DESCRIPTION, E.WEBSITE from FAVOURITE_COURSE F, IT_EDU E WHERE F.EDU_CODE = E.EDU_CODE AND E.PUBLICITY="YES" order by F.FCOURSE_CODE desc')
     console.log(list)
     res.json(list)
 })
@@ -108,23 +114,26 @@ app.get("/favourite", (req,res) => {
 app.get("/favouriteDelete", (req,res) => {
     console.log(req.query.star);
     const star=(req.query.star);
-    const result = connection.query('delete from FAVOURITE_EVENT2 where FAVOURITE_EVENT_CODE='+star);
+    const result = connection.query('delete from FAVOURITE_COURSE where FCOURSE_CODE='+star);
     console.log("삭제")
+    // const all = connection.query("select * from FAVOURITE_COURSE")
+    // res.json(all);
 })
 
 //Admin
 app.get("/admin", (req, res)=> {
-    const result = connection.query('select * from EVENT2 order by EVENT_CODE desc')
+    const result = connection.query('select * from IT_EDU order by EDU_CODE desc')
     // console.log("성공")
     res.json(result)
 })
 
-//AdminDelete
+//AdminDelete  API작성해야함===================
 app.get("/adminDelete", (req,res) => {
     console.log(req.query.star);
     const star=(req.query.star);
-    const result = connection.query('delete from EVENT2 where EVENT_CODE='+star);
+    const result = connection.query('delete from IT_EDU where EDU_CODE='+star);
     console.log("삭제")
+    // const all = connection.query('select * from IT_EDU')
     res.json(result)
 })
 
@@ -132,8 +141,10 @@ app.get("/adminDelete", (req,res) => {
 app.get("/Approve", (req, res) => {
     console.log(req.query.approveStar)
     const approveStar=(req.query.approveStar)
-    const result = connection.query('update EVENT2 set RUBLIC="YES" where EVENT_CODE="'+approveStar+'"')
+    const result = connection.query('update IT_EDU set PUBLICITY="YES" where EDU_CODE="'+approveStar+'"')
     console.log(result);
+    // const all = connection.query("select * from IT_EDU")
+    // res.json(all);
 })
 
 
@@ -142,8 +153,10 @@ app.get("/noApprove", (req, res) => {
     console.log(req.query.noApproveStar)
     const noApproveStar=(req.query.noApproveStar)
     // const result=connection.query('select RUBLIC from EVENT2 where EVENT_CODE="'+noApproveStar+'"')
-    const result = connection.query('update EVENT2 set RUBLIC="NO" where EVENT_CODE="'+noApproveStar+'"')
+    const result = connection.query('update IT_EDU set PUBLICITY="NO" where EDU_CODE="'+noApproveStar+'"')
     console.log(result);
+    // const all = connection.query("select * from IT_EDU")
+    // res.json(all);
 })
 
 module.exports=app;

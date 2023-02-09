@@ -30,18 +30,23 @@ const NavStyle = styled(NavLink) `
 
 function App() {
   return (
-    <div>
+     <div>
+    <div className="wap"> 
     <header>
         <li><NavStyle to="/" className={({isActive}) => (isActive? "active" : "")}><MdChildCare />Paranmanjang</NavStyle>
         </li>
     </header>
+    <p></p>
       <body>
         <Nav />
       </body>
+    </div>
+    <div>
      <footer>
         <Footer />
      </footer>
       
+  </div>
   </div>
 
   );

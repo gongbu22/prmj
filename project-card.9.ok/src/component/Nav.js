@@ -23,13 +23,13 @@ const Nav =()=> {
          <ul id='nav' style={{margintop:'20px'}}> 
           <li><NavLink to="/" style={({isActive}) => {
             return isActive ? activeStyle : deactiveStyle;
-          }}>Card</NavLink>
+          }}><h5>Card</h5></NavLink>
           </li>
           
           <li>
           <NavLink to="/user" style={({isActive}) => {
             return isActive ? activeStyle : deactiveStyle;
-          }}>User</NavLink>
+          }}><h5>User</h5></NavLink>
           </li>
   
           
@@ -37,19 +37,19 @@ const Nav =()=> {
           <li>
           <NavLink to="/favourite" style={({isActive}) => {
             return isActive ? activeStyle : deactiveStyle;
-          }}>favourite</NavLink>
+          }}><h5>Favourite</h5></NavLink>
           </li>
           
           <li>
           <NavLink to="/admin" style={({isActive}) => {
             return isActive ? activeStyle : deactiveStyle;
-          }}>admin</NavLink>
+          }}><h5>Admin</h5></NavLink>
           </li>
           
           <li>
           <NavLink to="/login" style={({isActive}) => {
             return isActive ? activeStyle : deactiveStyle;
-          }}>login</NavLink>
+          }}><h5>Login</h5></NavLink>
           </li>
           
            

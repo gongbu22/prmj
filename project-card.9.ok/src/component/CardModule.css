@@ -83,3 +83,18 @@
     color: white;
 }
 
+.cardList {
+   float:top;
+}
+
+.card {
+    /*float:left;*/
+}
+
+.pagination {
+    float: bottom;
+}
+
+.bigCard {
+    float: top;
+}

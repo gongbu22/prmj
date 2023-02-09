@@ -4,8 +4,8 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import moment from 'moment';
 import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
-import './ListModule.css';
 import {useNavigate} from 'react-router-dom';
+import './AdminListModule.css';
 
 function ModalExampleModal({admin}) {
   const [open, setOpen] = React.useState(false)
@@ -59,7 +59,7 @@ function ModalExampleModal({admin}) {
      <div>
      
       <h1>전체목록</h1>
-    <div>
+    <div className="bigBox">
         {admin.map((f)=> (
         <div>
 
@@ -70,22 +70,23 @@ function ModalExampleModal({admin}) {
       trigger={
       <div className = 'list' >
       <div className= 'listTwo'>
-        <div className='listCategory'><b>{f.EVENT_CATEGORY}</b></div>
-        <div className='listName' ><h3>{f.EVENT_NAME}</h3> </div>
-        <div>{f.RUBLIC==="YES" ? <p><MdCheckCircle />승인</p>:<p><MdNotInterested />승인요청중</p>}</div>
+        <div className='listCategory'><b>{f.WEBSITE_LIST}</b></div>
+        <div className='listName' ><h3>{f.COURSE_NAME}</h3> </div>
+        <div>{f.PUBLICITY==="YES" ? <p><MdCheckCircle />승인</p>:<p><MdNotInterested />승인요청중</p>}</div>
       </div>
       <Button style={{color:'white', background:'#A9DD54', width:'100px', height: '30px', float:'right', margin:'auto'}}> detail </Button>
       </div>}
     >
-      <Modal.Header>{f.EVENT_NAME} 상세페이지</Modal.Header>
+      <Modal.Header>{f.COURSE_NAME} 상세페이지</Modal.Header>
       <Modal.Content image>
         <Image size='medium' src='' wrapped />
         <Modal.Description>
-          <Header>행사카테고리: {f.EVENT_CATEGORY}</Header>
-          <p>행사이름: {f.EVENT_NAME}</p>
-          <p>행사장소: {f.EVENT_PLACE}</p>
-          <p>행사날짜: {moment(f.EVENT_BEGIN_DATE).format('YYYY-MM-DD')} ~ {moment(f.EVENT_END_DATE).format('YYYY-MM-DD')}</p>
-          <p>행사설명: {f.EVENT_ACCOUNT}</p>
+          <Header>사이트명: {f.WEBSITE_LIST}</Header>
+          <p>교육과정명: {f.COURSE_NAME}</p>
+          <p>교육과정 수업날: {f.BEGIN_DATE}</p>
+          <p>교육과정기간: {f.COURSE_DURATION}</p>
+          <p>교육과정설명: {f.DESCRIPTION}</p>
+          <p>사이트주소: {f.WEBSITE}</p>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
@@ -94,8 +95,8 @@ function ModalExampleModal({admin}) {
         </Button>
       </Modal.Actions>
     </Modal>
-    <input type='button' name={f.EVENT_CODE} value='삭제' onClick={listDelete}></input>
-    <input type='button' name={f.EVENT_CODE} value={f.RUBLIC==="YES"? "승인취소": "승인하기"} onClick={f.RUBLIC==="YES"? noApprove: approve}></input>
+    <input type='button' name={f.EDU_CODE} value='삭제' onClick={listDelete}></input>
+    <input type='button' name={f.EDU_CODE} value={f.PUBLICITY==="YES"? "승인취소": "승인하기"} onClick={f.PUBLICITY==="YES"? noApprove: approve}></input>
     </div>
     ))}
     </div>

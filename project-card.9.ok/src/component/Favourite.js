@@ -3,7 +3,6 @@ import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import moment from 'moment';
-import './ListModule.css';
 import FavouriteList from './FavouriteList';
 import Pagination from './Pagination';
 import {useNavigate} from 'react-router-dom';
@@ -39,6 +38,7 @@ function ModalExampleModal() {
   return (
     <div>
     <FavouriteList favourite={currentPosts(favourite)}/>
+    <p></p>
     <div className="pagination">
     <Pagination 
         postsPerPage={postsPerPage}

@@ -12,31 +12,28 @@ document.head.appendChild(styleLink);
 const CardExampleCard = ({card}) => {
   
   return(
-    <div>
+    <div className="card">
     {card.map((card)=> (
-        <Card key={card.EVENT_CODE} style={{margin: "30px"}} >
+        <Card key={card.EDU_CODE} style={{margin: "30px"}} >
         <Card.Content>
           <Card.Meta>
-            <span className='category'>{card.EVENT_CATEGORY}</span>
+            <span className='websiteList'>사이트명: {card.WEBSITE_LIST}</span>
           </Card.Meta>
           <Card.Header>
-            <span className='name'>{card.EVENT_NAME}</span>
+            <span className='courseName'>교육과정명: {card.COURSE_NAME}</span>
           </Card.Header>
           <Card.Meta>
-            <span className='place'>{card.EVENT_PLACE}</span>
+            <span className='beginDate'>교육과정수업날: {card.BEGIN_DATE}</span>
           </Card.Meta>
           <Card.Description>
-            <span className='date'>{card.EVENT_BEGIN_DATE} ~ {card.EVENT_END_DATE}</span>
+            <span className='courseDuration'>교육과정수업기간:{card.COURSE_DURATION}</span>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <CardFavourite star={card.EVENT_CODE} />
-         <span className='views'>{card.VIEWS}</span>
-         <span className='downloads'>{card.DOWNLOADS}</span>
+        <CardFavourite star={card.EDU_CODE} />
          <div id='hidden'>
-           <span className='host'>{card.POST}</span>
-           <span className='region'>{card.REGION}</span>
-           <span className='account'>{card.ACCOUNT}</span>
+           <span className='host'>{card.DESCRIPTION}</span>
+           <span className='region'>{card.WEBSITE}</span>
          </div>
         </Card.Content>
         <CardModal code={card}/>

@@ -1,0 +1,27 @@
+.list {
+    border: 3px solid lightgray;
+    margin:auto;
+    margin-top:30px;
+    width:500px;
+    height: 60px;
+}
+
+.listTwo {
+    float: left;
+}
+
+.listCategory {
+    float:left;
+    border: none;
+    margin:5px;
+    border-radius:30px;
+    padding: 5px;
+    margin: auto;
+    background:#A9DD54;
+    color:white;
+}
+
+.listName {
+    float:left;
+    margin-left: 50px;
+}

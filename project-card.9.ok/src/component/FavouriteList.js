@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import moment from 'moment';
 import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
-import './ListModule.css';
 import {useNavigate} from 'react-router-dom';
+import './FavouriteListModule.css';
 
 function FavouriteList({favourite}) {
   const [open, setOpen] = React.useState(false)
@@ -26,9 +26,10 @@ function FavouriteList({favourite}) {
     }
     
   return (
-    <div>
+    <div className="bigBox">
         {favourite.map((f)=> (
-    <div>
+    <div className="box">
+    <div className="modal">
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
@@ -36,20 +37,22 @@ function FavouriteList({favourite}) {
       trigger={
       <div className = 'list' >
       <div className= 'listTwo'>
-        <div className='listCategory'><b>{f.FAVOURITE_EVENT_CATEGORY}</b></div>
-        <div className='listName' ><h3>{f.FAVOURITE_EVENT_NAME}</h3> </div>
+        <div className='listCategory'><b>{f.WEBSITE_LIST}</b></div>
+        <div className='listName' ><h3>{f.COURSE_NAME}</h3> </div>
       </div>
       <Button style={{color:'white', background:'#A9DD54', width:'100px', height: '30px', float:'right', margin:'auto'}}> detail </Button>
       </div>}
     >
-      <Modal.Header>{f.FAVOURITE_EVENT_NAME} 상세페이지</Modal.Header>
+      <Modal.Header>{f.FCOURSE_CODE} 상세페이지</Modal.Header>
       <Modal.Content image>
         <Modal.Description>
-          <Header>행사카테고리: {f.FAVOURITE_EVENT_CATEGORY}</Header>
-          <p>행사이름: {f.FAVOURITE_EVENT_NAME}</p>
-          <p>행사장소: {f.FAVOURITE_EVENT_PLACE}</p>
-          <p>행사날짜: {moment(f.FAVOURITE_EVENT_BEGIN_DATE).format('YYYY-MM-DD')} ~ {moment(f.FAVOURITE_EVENT_END_DATE).format('YYYY-MM-DD')}</p>
-          <p>행사설명: {f.EVENT_ACCOUNT}</p>
+          <Header>사이트명: {f.WEBSITE_LIST}</Header>
+          <p>교육과정명: {f.COURSE_NAME}</p>
+          <p>교육과정수업날: {f.BEGIN_DATE}</p>
+          <p>교육과정기간: {f.COURSE_DURATION}</p>
+          <p>교육과정설명: {f.DESCRIPTION}</p>
+          <p>사이트주소: {f.WEBSITE}</p>
+          <p>**사이트주소를 클릭하면 해당사이트로 이동됩니다.</p>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
@@ -58,7 +61,10 @@ function FavouriteList({favourite}) {
         </Button>
       </Modal.Actions>
     </Modal>
-     <input type='button' value='관심행사삭제' name={f.FAVOURITE_EVENT_CODE} onClick={submit} style={{float: 'right'}}></input>
+    </div>
+    <div className="fdelete">
+     <input id="favouriteDelete" type='button' value='삭제' name={f.FCOURSE_CODE} onClick={submit} style={{float: 'right'}}></input>
+    </div>
     </div>
     ))}
     </div>

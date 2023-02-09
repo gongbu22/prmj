@@ -1,9 +1,8 @@
 import React from 'react'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import './ListModule.css';
-import AdminList from './AdminList'
 import Pagination from './Pagination';
+import AdminList from './AdminList'
 
 function ModalExampleModal() {
   const [open, setOpen] = React.useState(false)

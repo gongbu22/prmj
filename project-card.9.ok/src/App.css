@@ -49,24 +49,18 @@
   position: relative;
 }
 
-.cardMenu {
-  border: 1px solid red;
-  float: left;
-  width:30%;
-  box-sizing: border-box;
-}
 
-.userMenu {
-  border: 1px solid green;
-    float: left;
-    margin-left: 5%;
-    width:30%;
-    box-sizing: border-box;
-}
-
-.aboutMenu{
-   border: 1px solid blue;
-    width:30%;
-    box-sizing: border-box;
-}
-
+ footer {
+   margin-top: auto;
+ }
+ 
+ .wap {
+   display: flex;
+  flex-direction: column;
+  min-height: 78vh;
+ }
+ 
+ body {
+   background-color:#F5F5F5;
+ }
+ 
