@@ -6,7 +6,6 @@ import Favourite from './Favourite';
 import {Routes, Route, NavLink} from 'react-router-dom';
 import Admin from './Admin';
 import Login from './Login';
-
 const Nav =()=> {
     
     const activeStyle = {
