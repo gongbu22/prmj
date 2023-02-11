@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {MdChildCare} from 'react-icons/md'
 import {NavLink} from 'react-router-dom';
 import Footer from './component/Footer';
+import logout from './component/logout';
 
 
 const NavStyle = styled(NavLink) `
@@ -35,6 +36,7 @@ function App() {
     <header>
         <li><NavStyle to="/" className={({isActive}) => (isActive? "active" : "")}><MdChildCare />Paranmanjang</NavStyle>
         </li>
+        <li><logout /></li>
     </header>
     <p></p>
       <body>

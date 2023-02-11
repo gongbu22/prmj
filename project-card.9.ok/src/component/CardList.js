@@ -12,8 +12,10 @@ document.head.appendChild(styleLink);
 const CardExampleCard = ({card}) => {
   
   return(
+
     <div className="card">
     {card.map((card)=> (
+    <div>
         <Card key={card.EDU_CODE} style={{margin: "30px"}} >
         <Card.Content>
           <Card.Meta>
@@ -31,13 +33,14 @@ const CardExampleCard = ({card}) => {
         </Card.Content>
         <Card.Content extra>
         <CardFavourite star={card.EDU_CODE} />
-         <div id='hidden'>
-           <span className='host'>{card.DESCRIPTION}</span>
-           <span className='region'>{card.WEBSITE}</span>
-         </div>
         </Card.Content>
         <CardModal code={card}/>
       </Card>
+       <div id='hidden'>
+           <span className='host'>{card.DESCRIPTION}</span>
+           <span className='region'>{card.WEBSITE}</span>
+        </div>
+        </div>
       ))}
       </div>
   )

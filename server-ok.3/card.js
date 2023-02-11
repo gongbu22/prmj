@@ -27,6 +27,77 @@ app.listen(port, ()=>{
 let result = connection.query('select * from IT_EDU');
 //console.log(result);
 
+//login/logout
+app.post('/register', (req, res) => {
+    const email = req.body.email;
+    const id = req.body.id;
+    const password = req.body.password;
+    console.log('/register called')
+    console.log("email : "+ email +"| id : " + id + " | password : " + password)
+    console.log(req.body);
+
+    connection.query("INSERT INTO USER (email, id, password) VALUES (?, ?, ?)", [email, id, password], 
+        (err, userCheck) => {
+            if(userCheck){
+                res.send(userCheck);
+                res.json(userCheck[0]);
+            }else{
+                res.send({message: " 정확히 입력해주세요 "})
+            }
+        }
+    )
+    console.log('/register done')
+})
+
+
+app.post("/login", (req, res) => {
+    const id = req.body.id;
+    const password = req.body.password;
+    console.log('/login Called')
+    console.log("id : " + id + " | password : " + password)
+
+    // const result = connection.query('select * from USER')
+    // console.log(result)
+    // res.send(result);
+    // return;
+    //connection.connect();
+    connection.query("SELECT USER_CODE, ID, USER_GRADE from USER where id = ? AND password = ?", [id, password], 
+        function(err, result, fields) {
+            if (result[0] != null) {
+                const uuid = v4();
+                connection.query("UPDATE USER SET TOKEN = ?, ACCESS_DATE = CURRENT_TIMESTAMP, EXPIRE_DATE = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) WHERE id = ?", [uuid, id], (err) => {
+                    if(err) {
+                        res.send('UUID update failed')
+                    }
+                    result[0].TOKEN = uuid
+                    res.json(result[0]);
+                })
+            }else {
+                res.send('');
+            }
+        }
+    )
+    console.log('/login done')
+})
+
+app.post('/logout', (req, res) => {
+
+    const token = req.body.token;
+    console.log('/logout called')
+    console.log(" token : " + token)
+
+    connection.query("UPDATE USER SET EXPIRE_DATE = CURRENT_TIMESTAMP WHERE TOKEN = ?", [token],
+        (err, logCheck) => {
+        if (logCheck){
+            res.send(logCheck);
+        }else{
+            res.send({message: " 로그아웃에 실패하였습니다."})
+        }
+    }
+    )
+    console.log('/logout done')
+})
+
 //Card
 app.get("/cardList", (req, res)=> {
     const result = connection.query('select * from IT_EDU where PUBLICITY="YES" order by EDU_CODE desc;')
