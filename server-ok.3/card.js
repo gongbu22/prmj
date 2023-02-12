@@ -137,18 +137,36 @@ app.post("/cardSearch", (req, res)=> {
     const result = connection.query("select * from IT_EDU where COURSE_NAME like '%"+search+"%' and PUBLICITY='YES' order by EDU_CODE desc;")
     res.json(result);
     console.log(result);
-    // console.log(result);
-    // const searchName = connection.query('select EVENT_NAME from EVENT_INFO')
-    // res.json(searchName);
+    
 })
 
-//api작성해야함======================
-app.get("/category", (req, res) => {
-    var eventName =req.query.event
-    const event = connection.query('select * from IT_EDU where WEBSITE_LIST="'+eventName+'"')
-    console.log(eventName)
+//카테고리
+app.get("/megastudy", (req, res) => {
+    const event = connection.query('select * from IT_EDU where WEBSITE_LIST like "%메가스터디%" and PUBLICITY="YES" order by EDU_CODE desc;')
+    console.log(event)
     res.json(event)
 })
+
+app.get("/itbank", (req, res) => {
+    const event = connection.query('select * from IT_EDU where WEBSITE_LIST like "%IT뱅크%" and PUBLICITY="YES" order by EDU_CODE desc;')
+    console.log(event)
+    res.json(event)
+})
+
+app.get("/week", (req, res) => {
+    const event = connection.query('select * from IT_EDU where BEGIN_DATE like "%평일%" and PUBLICITY="YES" order by EDU_CODE desc;')
+    console.log(event)
+    res.json(event)
+})
+
+app.get("/weekend", (req, res) => {
+    const event = connection.query('select * from IT_EDU where BEGIN_DATE like "%주말%" and PUBLICITY="YES" order by EDU_CODE desc;')
+    console.log(event)
+    res.json(event)
+})
+
+
+
 
 //Card 카드관심행사추가
 app.get("/cardfavourite", (req,res) => {
