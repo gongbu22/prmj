@@ -14,7 +14,7 @@ const Login = () => {
 
     const login = (e) => {
       e.preventDefault();
-      Axios.post("http://3.38.26.169:3001/login",
+      Axios.post("http://localhost:3001/login",
         {
           id: id,
           password: password
@@ -30,11 +30,9 @@ const Login = () => {
         .catch((err) => {
           console.error(err);
         });
-        navigate("/");
+        document.location.href = '/'
     };
     
-    
-  
     return(
       <div className="container">
         <div className="loginForm">

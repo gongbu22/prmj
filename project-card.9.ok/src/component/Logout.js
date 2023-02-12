@@ -8,22 +8,17 @@ const Logout = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-      axios.post("http://3.38.26.169:3001/logout", {
+      axios.post("http://localhost:3001/logout", {
         headers: {
           'token': token
         }
-      }).then((response) => {
-        console.log(response)
-        setToken(response.data.TOKEN);
+      }).then((res) => {
+        console.log(res)
+        setToken(res.data.TOKEN);
         localStorage.removeItem("USER");
-        if(response.data.message){
-          setLogoutStatus(response.data.message);
-        }else{
-          setLogoutStatus(response.data.email);
-        }
-      });
-      navigate("/login");
-    }
+      })
+      document.location.href = '/'
+      }
 
     return (
       <div>

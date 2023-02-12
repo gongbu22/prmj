@@ -5,6 +5,9 @@ const app = express();
 const port = 3001;
 const mysql = require('sync-mysql');
 const cors = require("cors");
+const noSyncMysql = require('mysql');
+const { v4 } = require('uuid');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -17,6 +20,14 @@ var connection = new mysql({
     password : '1234',
     database : 'cseprmj'
 });
+
+// const noSyncConnection = noSyncMysql.createConnection({
+//     host : 'database-2.cz3zo4yskaei.ap-northeast-2.rds.amazonaws.com',
+//     user : 'prmj',
+//     port: '3306',
+//     password : '1234',
+//     database : 'cseprmj'
+// });
 
 //포트확인
 app.listen(port, ()=>{
@@ -36,7 +47,7 @@ app.post('/register', (req, res) => {
     console.log("email : "+ email +"| id : " + id + " | password : " + password)
     console.log(req.body);
 
-    connection.query("INSERT INTO USER (email, id, password) VALUES (?, ?, ?)", [email, id, password], 
+    noSyncConnection.query("INSERT INTO USER (email, id, password) VALUES (?, ?, ?)", [email, id, password], 
         (err, userCheck) => {
             if(userCheck){
                 res.send(userCheck);
@@ -49,23 +60,17 @@ app.post('/register', (req, res) => {
     console.log('/register done')
 })
 
-
 app.post("/login", (req, res) => {
     const id = req.body.id;
     const password = req.body.password;
     console.log('/login Called')
     console.log("id : " + id + " | password : " + password)
 
-    // const result = connection.query('select * from USER')
-    // console.log(result)
-    // res.send(result);
-    // return;
-    //connection.connect();
-    connection.query("SELECT USER_CODE, ID, USER_GRADE from USER where id = ? AND password = ?", [id, password], 
+    noSyncConnection.query("SELECT USER_CODE, ID, USER_GRADE from USER where id = ? AND password = ?", [id, password], 
         function(err, result, fields) {
             if (result[0] != null) {
                 const uuid = v4();
-                connection.query("UPDATE USER SET TOKEN = ?, ACCESS_DATE = CURRENT_TIMESTAMP, EXPIRE_DATE = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) WHERE id = ?", [uuid, id], (err) => {
+                noSyncConnection.query("UPDATE USER SET TOKEN = ?, ACCESS_DATE = CURRENT_TIMESTAMP, EXPIRE_DATE = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) WHERE id = ?", [uuid, id], (err) => {
                     if(err) {
                         res.send('UUID update failed')
                     }
@@ -86,7 +91,7 @@ app.post('/logout', (req, res) => {
     console.log('/logout called')
     console.log(" token : " + token)
 
-    connection.query("UPDATE USER SET EXPIRE_DATE = CURRENT_TIMESTAMP WHERE TOKEN = ?", [token],
+    noSyncConnection.query("UPDATE USER SET EXPIRE_DATE = CURRENT_TIMESTAMP WHERE TOKEN = ?", [token],
         (err, logCheck) => {
         if (logCheck){
             res.send(logCheck);
@@ -96,6 +101,26 @@ app.post('/logout', (req, res) => {
     }
     )
     console.log('/logout done')
+})
+
+app.post("/maintainLoginStatus", (req, res) => {
+    const token = req.body.token;
+
+    noSyncConnection.query("SELECT USER_CODE, EMAIL, ID, USER_GRADE from USER where TOKEN = ?", [token], 
+        function(err, result, fields) {
+            if (result[0] != null) {
+                noSyncConnection.query("UPDATE USER SET ACCESS_DATE = CURRENT_TIMESTAMP, EXPIRE_DATE = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) WHERE TOKEN = ?", [token], (err) => {
+                    if(err) {
+                        res.send('접속시간 동기화 실패')
+                    }
+                    res.json(result[0])
+                    .send();
+                })
+            }else {
+                res.send('토큰이 존재하지 않음');
+            }
+        }
+    )
 })
 
 //Card
@@ -230,13 +255,29 @@ app.get("/noApprove", (req, res) => {
     // res.json(all);
 })
 
-// //modaltest
-// app.get("/test", (req,res) => {
-//     console.log(req.query.code);
-//     const code=(req.query.code);
-//     const result = connection.query('select * from IT_EDU where EDU_CODE='+code);
-//     // const all = connection.query("select * from FAVOURITE_COURSE")
-//     res.json(result);
-// })
+//수정
+app.post("/userUpdate", (req, res)=> {
+    const websiteList=req.body.websiteList
+    const courseName = req.body.courseName
+    const beginDate = req.body.beginDate
+    const courseDuration = req.body.courseDuration
+    const description = req.body.description
+    const website = req.body.website
+    //console.log(websiteList, courseName, beginDate, courseDuration, description, website)
+    
+    const result = connection.query("update IT_EDU set WEBSITE_LIST=?, COURSE_NAME=?, BEGIN_DATE=?, COURSE_DURATION=?, DESCRIPTION=?, PUBLICITY='NO', WEBSITE=? where EDU_CODE="+req.body.EDU_CODE+";",[
+        websiteList,
+        courseName,
+        beginDate,
+        courseDuration,
+        description,
+        website
+        ])
+        
+    // const all = connection.query("select * from IT_EDU where EDU_CODE="+req.body.EDU_CODE+";")
+    // console.log(all)
+    console.log(result)
+    
+})
 
 module.exports=app;
