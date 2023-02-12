@@ -26,8 +26,8 @@ function ModalExampleModal({list}) {
       </div>
       <Button style={{color:'white', background:'#A9DD54', width:'100px', height: '30px', float:'right', margin:'auto'}}> detail </Button>
       </div>}
-    >
-      <Modal.Header>{f.EDU_CODE} 상세페이지</Modal.Header>
+    > 
+      <Modal.Header id={f.EDU_CODE}>{f.EDU_CODE} 상세페이지</Modal.Header>
         <Modal.Description>
           <Header>사이트명: {f.WEBSITE_LIST}</Header>
           <p>교육과정명: {f.COURSE_NAME}</p>

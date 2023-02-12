@@ -1,14 +1,16 @@
 import { useEffect, useState} from 'react';
-import TestAdd from './TestAdd';
-import TestList from './TestList';
+import TestList from './Test2List';
 import axios from 'axios';
 import Pagination from './Pagination';
+import TestAdd from './TestAdd';
+import TestDetail from './TestDetail'
 
 function User() {
     const [lists, setLists] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(3);
+    
    
    useEffect(() => {
     axios.get("http://3.38.26.169:3001/userList").then((res) => {
@@ -32,12 +34,13 @@ function User() {
         <div>
             <TestAdd />
             <TestList list={currentPosts(lists)}/>
+            
             <div className="pagination">
-            <Pagination 
-            postsPerPage={postsPerPage}
-            totalPosts={lists.length}
-            paginate={setCurrentPage}
-            />
+                <Pagination 
+                postsPerPage={postsPerPage}
+                totalPosts={lists.length}
+                paginate={setCurrentPage}
+                />
             </div>
         </div>
     )

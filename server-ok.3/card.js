@@ -230,4 +230,13 @@ app.get("/noApprove", (req, res) => {
     // res.json(all);
 })
 
+// //modaltest
+// app.get("/test", (req,res) => {
+//     console.log(req.query.code);
+//     const code=(req.query.code);
+//     const result = connection.query('select * from IT_EDU where EDU_CODE='+code);
+//     // const all = connection.query("select * from FAVOURITE_COURSE")
+//     res.json(result);
+// })
+
 module.exports=app;

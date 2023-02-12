@@ -1,35 +1,35 @@
 import React, {useState} from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
-import moment from 'moment';
-import {MdCheckCircle, MdNotInterested} from 'react-icons/md';
-import './UserListModule.css';
-import TestModal from './TestModal';
 
 function ModalExampleModal({list}) {
   
-  // 모달창 노출 여부 state
-    const [modalOpen, setModalOpen] = useState(false);
-
-    // 모달창 노출
-    const showModal = () => {
-        setModalOpen(true);
-    };
+  //아코디언
+  const [isActive, setIsActive] = useState(false);
+  
 
   return (
      <div>
-      <h1>추가한 목록</h1>
-    <div>
+     <div>
         {list.map((f)=> (
         <div>
-            <div>{f.WEBSITE_LIST}</div>
-            <button onClick={showModal}>모달 띄우기</button>
-            {modalOpen && <TestModal setModalOpen={setModalOpen} list={f.EDU_CODE} />}
+            <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
+                <p>사이트명: {f.WEBSITE_LIST}</p>
+                <p>교육과정명: {f.COURSE_NAME}</p>
+                <div>{isActive ? '-' : '+'}</div>
+            </div>
+            {isActive && <div className="accordion-content">
+                
+                <p>교육과정수업날: {f.BEGIN_DATE}</p>
+                <p>교육과정기간: {f.COURSE_DURATION}</p>
+                <p>교육과정설명: {f.DESCRIPTION}</p>
+                <p>사이트주소: {f.WEBSITE}</p>
+                <p>주소를 클릭하면 해당사이트로 이동합니다.</p>
+            </div>}
         </div>
+   ))}
+   </div>
+   </div>
 
-        ))}
-    </div>
-   </div> 
-  );
+    );
 };
 
 export default ModalExampleModal
