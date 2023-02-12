@@ -219,7 +219,7 @@ app.get("/userList", (req, res) => {
 
 //Favourite
 app.get("/favourite", (req,res) => {
-    const list = connection.query('select F.FCOURSE_CODE, F.WEBSITE_LIST, F.COURSE_NAME, E.BEGIN_DATE, E.COURSE_DURATION, E.DESCRIPTION, E.WEBSITE from FAVOURITE_COURSE F, IT_EDU E WHERE F.EDU_CODE = E.EDU_CODE AND E.PUBLICITY="YES" order by F.FCOURSE_CODE desc')
+    const list = connection.query('select F.FCOURSE_CODE, F.WEBSITE_LIST, F.COURSE_NAME, E.ID, E.BEGIN_DATE, E.COURSE_DURATION, E.DESCRIPTION, E.WEBSITE from FAVOURITE_COURSE F, IT_EDU E WHERE F.EDU_CODE = E.EDU_CODE AND E.PUBLICITY="YES" order by F.FCOURSE_CODE desc')
     console.log(list)
     res.json(list)
 })

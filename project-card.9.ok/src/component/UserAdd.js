@@ -1,9 +1,9 @@
 import {React, useState } from "react";
 import axios from "axios";
-import './UserAddModule.css';
 import {useNavigate} from 'react-router-dom';
+import {Link } from "react-router-dom"
 
-const UserAdd =() => {
+const TestAdd =() => {
     let navigate = useNavigate();
     //변수선언
     const [WebsiteList, SetWebsiteList] = useState("");
@@ -61,7 +61,7 @@ const UserAdd =() => {
       .then((res) => console.log(res));
       
     alert("행사가 등록되었습니다. 승인을 기다려주세요.")
-    navigate("/user")
+    navigate("/")
     window.location.reload()
     
     reset();
@@ -117,10 +117,11 @@ const UserAdd =() => {
             <div className='bottomBottom'>
                 <button type="submit" className='okButton'><b>등록</b></button>
             </div>
+            <Link to={"/user"}><button>닫기</button></Link>
         </form>
       </div>
     </div>
   );
 };
 
-export default UserAdd;
+export default TestAdd;

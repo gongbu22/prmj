@@ -85,7 +85,7 @@ function TestDetail() {
                 <input defaultvalue={id} placeholder= {id} onChange={handleid}></input>
             <button type="submit">수정완료</button>
         </form>
-        <Link to={"/test2"}><button>닫기</button></Link>
+        <Link to={"/user"}><button>닫기</button></Link>
         </div>
     )
 }
