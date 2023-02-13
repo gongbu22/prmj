@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom"; // 추가된 부분
+import './ListModule.css';
 
 function FavouriteList({favourite}) {
   
@@ -23,31 +24,40 @@ function FavouriteList({favourite}) {
     
   return (
     <div>
+    <table border='1'>
+        <tr>
+                <th>번호</th>
+                <th>사이트명</th>
+                <th>교육과정명</th>
+                <th>과정기간</th>
+                <th>작성자</th>
+                <th>상세보기</th>
+                <th>관심과정삭제</th>
+        </tr>
        {favourite.map((f)=> (
-           <div>
-                <div key={f.FCOURSE_CODE} >
-                    사이트명: <p>{f.WEBSITE_LIST}</p>
-                    교육과정명: <p>{f.COURSE_NAME}</p>
-                    과정기간: <p>{f.COURSE_DURATION}</p>
-                    작성자: <p>{f.ID}</p>
-                    
-                    <Link to={"/favouriteDetail"} state={{
-                    EDU_CODE: f.FCOURSE_CODE,
-                    WEBSITE_LIST: f.WEBSITE_LIST,
-                    COURSE_NAME: f.COURSE_NAME,
-                    BEGIN_DATE: f.BEGIN_DATE,
-                    COURSE_DURATION: f.COURSE_DURATION,
-                    DESCRIPTION:f.DESCRIPTION,
-                    WEBSITE:f.WEBSITE,
-                    ID:f.ID
-                    }}>
-                    <button>상세보기</button>
-                    </Link>
-                    <input type="button" name={f.FCOURSE_CODE} value="삭제" onClick={submit}></input>
-                </div>
-           
-            </div>
+                <tr key={f.FCOURSE_CODE}>    
+                        <td>{f.FCOURSE_CODE}</td>
+                        <td>{f.WEBSITE_LIST}</td>
+                        <td>{f.COURSE_NAME}</td>
+                        <td>{f.COURSE_DURATION}</td>
+                        <td>{f.ID}</td>
+                        
+                        <td><Link to={"/favouriteDetail"} state={{
+                        EDU_CODE: f.FCOURSE_CODE,
+                        WEBSITE_LIST: f.WEBSITE_LIST,
+                        COURSE_NAME: f.COURSE_NAME,
+                        BEGIN_DATE: f.BEGIN_DATE,
+                        COURSE_DURATION: f.COURSE_DURATION,
+                        DESCRIPTION:f.DESCRIPTION,
+                        WEBSITE:f.WEBSITE,
+                        ID:f.ID
+                        }}>
+                        <button>상세보기</button>
+                        </Link></td>
+                        <td><input type="button" name={f.FCOURSE_CODE} value="삭제" onClick={submit}></input></td>
+                </tr>
      ))}
+    </table>
      </div>
   )
 }

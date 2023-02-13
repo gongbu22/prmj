@@ -209,13 +209,47 @@ app.post("/add", (req, res)=> {
     res.json(all)
 })
 
-//api작성해야함==========================================
+//userList
 app.get("/userList", (req, res) => {
     const list = connection.query("select * from IT_EDU order by EDU_CODE desc")
     console.log(list);
     res.json(list);
 })
 
+//userUpdate
+app.post("/userUpdate", (req, res)=> {
+    const websiteList=req.body.websiteList
+    const courseName = req.body.courseName
+    const beginDate = req.body.beginDate
+    const courseDuration = req.body.courseDuration
+    const description = req.body.description
+    const website = req.body.website
+    //console.log(websiteList, courseName, beginDate, courseDuration, description, website)
+    
+    const result = connection.query("update IT_EDU set WEBSITE_LIST=?, COURSE_NAME=?, BEGIN_DATE=?, COURSE_DURATION=?, DESCRIPTION=?, PUBLICITY='NO', WEBSITE=? where EDU_CODE="+req.body.EDU_CODE+";",[
+        websiteList,
+        courseName,
+        beginDate,
+        courseDuration,
+        description,
+        website
+        ])
+        
+    // const all = connection.query("select * from IT_EDU where EDU_CODE="+req.body.EDU_CODE+";")
+    // console.log(all)
+    console.log(result)
+    
+})
+
+//UserDelete
+app.get("/userDelete", (req,res) => {
+    console.log(req.query.star);
+    const star=(req.query.star);
+    const result = connection.query('delete from IT_EDU where EDU_CODE='+star);
+    console.log("삭제")
+    // const all = connection.query("select * from FAVOURITE_COURSE")
+    // res.json(all);
+})
 
 //Favourite
 app.get("/favourite", (req,res) => {
@@ -239,6 +273,13 @@ app.get("/admin", (req, res)=> {
     const result = connection.query('select * from IT_EDU order by EDU_CODE desc')
     // console.log("성공")
     res.json(result)
+})
+
+//AdminCategory
+app.get("/approveCategory", (req, res) => {
+    const event = connection.query('select * from IT_EDU where PUBLICITY ="NO" order by EDU_CODE desc;')
+    console.log(event)
+    res.json(event)
 })
 
 //AdminDelete  API작성해야함===================
@@ -273,29 +314,5 @@ app.get("/noApprove", (req, res) => {
     // res.json(all);
 })
 
-//수정
-app.post("/userUpdate", (req, res)=> {
-    const websiteList=req.body.websiteList
-    const courseName = req.body.courseName
-    const beginDate = req.body.beginDate
-    const courseDuration = req.body.courseDuration
-    const description = req.body.description
-    const website = req.body.website
-    //console.log(websiteList, courseName, beginDate, courseDuration, description, website)
-    
-    const result = connection.query("update IT_EDU set WEBSITE_LIST=?, COURSE_NAME=?, BEGIN_DATE=?, COURSE_DURATION=?, DESCRIPTION=?, PUBLICITY='NO', WEBSITE=? where EDU_CODE="+req.body.EDU_CODE+";",[
-        websiteList,
-        courseName,
-        beginDate,
-        courseDuration,
-        description,
-        website
-        ])
-        
-    // const all = connection.query("select * from IT_EDU where EDU_CODE="+req.body.EDU_CODE+";")
-    // console.log(all)
-    console.log(result)
-    
-})
 
 module.exports=app;

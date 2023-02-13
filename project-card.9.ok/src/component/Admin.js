@@ -28,10 +28,21 @@ function ModalExampleModal() {
     currentPosts = admin.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   };
+  
+   //승인카테고리
+  const approveHandler = (s) => {
+    s.preventDefault();
+    
+    axios.get("http://3.38.26.169:3001/approveCategory").then((res) => {
+      // console.log(res)
+      setAdmin(res.data);
+    });
+  };
     
 
   return (
      <div>
+     승인여부:  <input type="button" value="승인요청" onClick={approveHandler}></input>
       <AdminList admin={currentPosts(admin)}/>
       <div className="pagination">
         <Pagination 

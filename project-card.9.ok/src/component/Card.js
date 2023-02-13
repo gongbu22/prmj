@@ -24,7 +24,7 @@ const Cards = () => {
   }, []);
 
   //카테고리
-    //메가스터디
+   //메가스터디
   const megaHandler = (s) => {
     s.preventDefault();
     
@@ -43,7 +43,7 @@ const Cards = () => {
     });
   };
   
-  //평일반
+   //평일반
   const weekHandler = (s) => {
     s.preventDefault();
     
@@ -53,7 +53,7 @@ const Cards = () => {
     });
   };
   
-  //주말반
+   //주말반
   const weekendHandler = (s) => {
     s.preventDefault();
     

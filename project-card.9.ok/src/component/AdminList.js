@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import './ListModule.css';
 
 function ModalExampleModal({admin}) {
   
@@ -15,7 +16,7 @@ function ModalExampleModal({admin}) {
                 console.log(res.data)
                 
             });
-      alert("삭제되었습니다.")
+      alert("교육과정이 삭제되었습니다.")
       
       navigate("/admin")
       window.location.reload()
@@ -30,7 +31,7 @@ function ModalExampleModal({admin}) {
         console.log(res.data)
       })
       
-      alert("승인되었습니다.")
+      alert("교육과정이 승인되었습니다.")
       
       navigate("/admin")
       window.location.reload() // 새로고침 내장함수 추가!
@@ -44,7 +45,7 @@ function ModalExampleModal({admin}) {
         console.log(res.data)
       })
       
-      alert("승인취소되었습니다.")
+      alert("교육과정이 승인취소되었습니다.")
       
       navigate("/admin")
       window.location.reload() // 새로고침 내장함수 추가!
@@ -52,16 +53,27 @@ function ModalExampleModal({admin}) {
 
   return (
      <div>
+      <table border='1'>
+        <tr>
+                <th>번호</th>
+                <th>사이트명</th>
+                <th>교육과정명</th>
+                <th>과정기간</th>
+                <th>작성자</th>
+                <th>상세보기</th>
+                <th>승인여부</th>
+                <th>교육과정승인</th>
+                <th>교육과정삭제</th>
+        </tr>
        {admin.map((f)=> (
-           <div>
-                <div key={f.EDU_CODE} >
-                    사이트명: <p>{f.WEBSITE_LIST}</p>
-                    교육과정명: <p>{f.COURSE_NAME}</p>
-                    과정기간: <p>{f.COURSE_DURATION}</p>
-                    작성자: <p>{f.ID}</p>
-                    <div>{f.PUBLICITY==="YES" ? <p>승인</p>:<p>승인요청중</p>}</div>
-                    
-                    <Link to={"/adminDetail"} state={{
+              <tr key={f.EDU_CODE}>
+                <td>{f.EDU_CODE}</td>
+                <td>{f.WEBSITE_LIST}</td>
+                <td>{f.COURSE_NAME}</td>
+                <td>{f.COURSE_DURATION}</td>
+                <td>{f.ID}</td>
+                
+                <td><Link to={"/adminDetail"} state={{
                     EDU_CODE: f.EDU_CODE,
                     WEBSITE_LIST: f.WEBSITE_LIST,
                     COURSE_NAME: f.COURSE_NAME,
@@ -72,13 +84,13 @@ function ModalExampleModal({admin}) {
                     ID:f.ID
                     }}>
                     <button>상세보기</button>
-                    </Link>
-                    <input type='button' name={f.EDU_CODE} value='삭제' onClick={listDelete}></input>
-                    <input type='button' name={f.EDU_CODE} value={f.PUBLICITY==="YES"? "승인취소": "승인하기"} onClick={f.PUBLICITY==="YES"? noApprove: approve}></input>
-                </div>
-           
-            </div>
+                    </Link></td>
+                <td>{f.PUBLICITY==="YES" ? <p>승인</p>:<p>승인요청중</p>}</td>
+                <td><input type='button' name={f.EDU_CODE} value={f.PUBLICITY==="YES"? "승인취소": "승인하기"} onClick={f.PUBLICITY==="YES"? noApprove: approve}></input></td>
+                <td><input type='button' name={f.EDU_CODE} value='삭제' onClick={listDelete}></input></td>
+              </tr>
      ))}
+     </table>
     </div>
   )
 }
