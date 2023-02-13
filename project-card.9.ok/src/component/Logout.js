@@ -7,7 +7,8 @@ const Logout = () => {
     const [token, setToken] = useState("");
     const navigate = useNavigate();
 
-    const logout = () => {
+    const logout = async() => {
+      try{
       axios.post("http://localhost:3001/logout", {
         headers: {
           'token': token
@@ -18,6 +19,9 @@ const Logout = () => {
         localStorage.removeItem("USER");
       })
       document.location.href = '/'
+        } catch(err) {
+          console.log("err", err)
+        }
       }
 
     return (

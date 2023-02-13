@@ -98,3 +98,8 @@
 .bigCard {
     float: top;
 }
+
+.cardpagination {
+    positon:relative;
+}
+

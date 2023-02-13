@@ -10,3 +10,27 @@
     margin: 3px;
 }
 
+.listbutton:hover, #buttonData:hover{
+    background: #96C44B;
+}
+
+.deletebutton {
+    background-color:transparent;
+    color:black;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.userAddButton {
+    float: right;
+    margin-right: 145px;
+    background: linear-gradient(55.6deg, #A9DD54 0%, #56CDDD 88.09%);
+    border: none;
+    color: white;
+    padding: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 6px;
+    cursor: pointer;
+}

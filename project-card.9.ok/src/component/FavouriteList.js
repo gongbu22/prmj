@@ -54,7 +54,7 @@ function FavouriteList({favourite}) {
                         }}>
                         <button className="listbutton">상세보기</button>
                         </Link></td>
-                        <td><input type="button" name={f.FCOURSE_CODE} value="삭제" onClick={submit} className="button"></input></td>
+                        <td><input type="button" name={f.FCOURSE_CODE} value="삭제" onClick={submit} className="listbutton"></input></td>
                 </tr>
      ))}
     </table>

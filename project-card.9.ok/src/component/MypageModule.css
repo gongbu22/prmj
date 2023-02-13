@@ -1,0 +1,103 @@
+.delForm {
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 670px;
+  height: 550px;
+  background: #FFFFFF;
+  border: 1px solid #ffb3d4;
+  box-shadow: 7px 7px 39px rgba(253, 153, 195, 0.25);
+  border-radius: 20px;
+
+  margin: 0px;
+  padding: 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+}
+
+.delTitle {
+
+  position: absolute;
+
+  left: 40%;
+  top: 6%;
+  width: 300px;
+  height: 90px;
+
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 47px;
+
+  color: black;
+  justify-content: space-evenly;
+
+}
+
+.delDescription {
+
+  position: relative;
+
+  left: 5%;
+  top: 60%;
+
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 47px;
+
+}
+
+.backButton {
+
+  position: relative;
+
+  left: 15%;
+  top: 60%;
+
+  width: 130px;
+  height: 40px;
+
+  background-color: #FFFFFF;
+  color: black;
+  border-radius: 8px;
+  border: black solid 1px;
+
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+
+
+}
+
+
+.delButton {
+
+  position: relative;
+
+  left: 27%;
+  top: 60%;
+
+  width: 130px;
+  height: 40px;
+
+  background-color: #FFFFFF;
+  color: black;
+  border-radius: 8px;
+  border: #f42f2f solid 1px;
+
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+
+}

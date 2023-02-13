@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, Link } from "react-router-dom"; // 추가된 부분
 import './DetailModule.css';
+import { MdClose } from 'react-icons/md';
 
 function TestDetail() {
     const location = useLocation(); // 추가된 부분
@@ -17,6 +18,7 @@ function TestDetail() {
     return (
         <div className="detailPageBox">
             <ul className="detailPage">
+            <li className="list"><Link to={"/admin"}><button className="deletebutton"><MdClose/></button></Link></li>
                 <li className="list"><p className="a">사이트명:</p> <p className="b">{WEBSITE_LIST}</p></li>
                 <li className="list"><p className="a">교육과정명:</p> <p className="b"> {COURSE_NAME}</p></li>
                 <li className="list"><p className="a">과정일정: </p> <p className="b">{BEGIN_DATE}</p></li>
@@ -24,7 +26,6 @@ function TestDetail() {
                 <li className="list"><p className="a">설명:</p> <p className="b bDESCRIPTION"> {DESCRIPTION}</p></li>
                 <li className="list listWEBSITE"><p className="a">주소:</p> <p className="b"> <a href={WEBSITE}>{WEBSITE}</a></p></li>
                 <li className="list"><p className="a">작성자:</p> <p className="b"> {ID}</p></li>
-                <li className="list"><Link to={"/admin"}><button className="listDelete listbutton">닫기</button></Link></li>
             </ul>
         </div>
     )

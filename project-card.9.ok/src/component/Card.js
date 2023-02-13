@@ -7,6 +7,7 @@ import './ButtonModule.css';
 
 
 
+
 const Cards = () => {
   
  
@@ -14,7 +15,7 @@ const Cards = () => {
   const [temp, setSearch] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(3);
+  const [postsPerPage, setPostsPerPage] = useState(12);
   
 
   useEffect(() => {
@@ -105,7 +106,7 @@ const Cards = () => {
     <div>
     <div>
       <form onSubmit={submitHandler} className="search">
-        <input className="searchinput" onChange={searchHandler} ></input>
+        <input className="searchinput" onChange={searchHandler} placeholder="교육과정명을 입력해주세요."></input>
         <button type="submit" className="searchButton listbutton">검색</button>
       </form>
       사이트명: <input type="button" value="메가스터디" onClick={megaHandler} className="listbutton"></input>
@@ -118,14 +119,14 @@ const Cards = () => {
       <div className="cardList">
         <CardList card={currentPosts(cards)}/>
       </div>
-        <div className="pagination">
+      </div>
+        <div className="cardpagination">
           <Pagination 
           postsPerPage={postsPerPage}
           totalPosts={cards.length}
           paginate={setCurrentPage}
           />
         </div>
-      </div>
     </div>
   );
 };

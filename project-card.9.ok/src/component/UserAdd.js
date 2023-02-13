@@ -1,7 +1,8 @@
 import {React, useState } from "react";
 import axios from "axios";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import {Link } from "react-router-dom"
+import { MdClose } from 'react-icons/md';
 
 const TestAdd =() => {
     let navigate = useNavigate();
@@ -12,6 +13,9 @@ const TestAdd =() => {
     const [CourseDuration, SetCourseDuration] = useState("");
     const [Description, SetDescription] = useState("");
     const [Website, SetWebsite] = useState("");
+    const location = useLocation();
+    const ID = location.state?.id;
+
 
   //값넣기
   
@@ -45,14 +49,16 @@ const TestAdd =() => {
   const submitHandler = (e) => {
     e.preventDefault();
     // state에 저장한 값을 가져옵니다.
+  console.log(ID)
    
-   let body = {
+  let body = {
       WEBSITE_LIST:WebsiteList ,
       COURSE_NAME:CourseName ,
       BEGIN_DATE:BeginDate ,
       COURSE_DURATION:CourseDuration,
       DESCRIPTION:Description,
-      WEBSITE:Website
+      WEBSITE:Website,
+      ID:ID,
     };
 
 
@@ -61,7 +67,7 @@ const TestAdd =() => {
       .then((res) => console.log(res));
       
     alert("행사가 등록되었습니다. 승인을 기다려주세요.")
-    navigate("/")
+    navigate("/user")
     window.location.reload()
     
     reset();
@@ -80,46 +86,25 @@ const TestAdd =() => {
 
 
   return (
-    <div className='modalboss'>
-      <div className='modalcontents'>
+    <div className="detailPageBox">
+            <ul className="detailPage">
         <form
           onSubmit={submitHandler}
           style={{ display: "flex", flexDirection: "Column" }}
+          className="userAddForm"
           >
-          <div className='top'>
-            <div className='topTop'>
-              <label><b>사이트명 :  </b></label>
-              <input type="text" value={WebsiteList} onChange={WebsiteListHandler} className="input"></input>
-            </div>
-            <div className='topMiddle'>
-              <label><b>교육과정명 :  </b></label>
-              <input type="text" value={CourseName} onChange={CourseNameHandler} className="input"></input>
-            </div>
-            <div className='topBottom'>
-              <label><b>교육과정수업날 :  </b></label>
-              <input type="text" value={BeginDate} onChange={BeginDateHandler} className="input"></input>
-            </div>
-          </div>
-          <div className='middle'>
-            <div className='middleTop'>
-              <label><b>교육과정기간 :  </b></label>
-              <input type="text" value={CourseDuration} onChange={CourseDurationHandler} className="input place"></input>
-            </div>
-            <div className='middleMiddle'> 
-              <label><b>교육과정 설명:  </b></label>
-              <input type="text" value={Description} onChange={DescriptionHandler} className="input"></input>
-            </div>
-            <div className='middleBottom'>
-              <label><b>사이트주소:  </b></label>
-              <input type="text" value={Website} onChange={WebsiteHandler} className="input"></input>
-            </div>
-          </div>
+          <Link to={"/user"}><button className="deletebutton"><MdClose/></button></Link>
+            <li className="list"><p className="a">사이트명: </p><p className="b"><input placeholder= "사이트명을 입력해주세요." className="input" onChange={WebsiteListHandler}></input></p></li>
+            <li className="list"><p className="a">교육과정명: </p><p className="b"><input placeholder="교육과정명을 입력해주세요." className="input" onChange={CourseNameHandler}></input></p></li>
+            <li className="list"><p className="a">과정일정: </p><p className="b"><input placeholder="평일반/주말반 주별 횟수를 입력해주세요. ex) 평일반 주 2회" className="input"  onChange={BeginDateHandler}></input></p></li>
+            <li className="list"><p className="a">수강기간: </p><p className="b"><input placeholder="수강기간을 입력해주세요. ex) 6개월" className="input" onChange={CourseDurationHandler}></input></p></li>
+            <li className="list"><p className="a">설명: </p><p className="b "><input placeholder="교육과정에 대한 자세한 설명을 입력해주세요." className="userUpdateDescription"  onChange={DescriptionHandler}></input></p></li>
+            <li className="list"><p className="a">주소: </p><p className="b"><input placeholder="교육과정의 해당사이트 주소를 입력해주세요." className="input" onChange={WebsiteHandler}></input></p></li>
             <div className='bottomBottom'>
-                <button type="submit" className='okButton listbutton'><b>등록</b></button>
+            <button type="submit" className='okButton listbutton addRegistButton'><b>등록</b></button>
             </div>
-            <Link to={"/user"}><button className="listbutton">닫기</button></Link>
         </form>
-      </div>
+      </ul>
     </div>
   );
 };

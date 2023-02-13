@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import Pagination from './Pagination';
 import AdminList from './AdminList'
 import './ButtonModule.css';
+import {useNavigate} from 'react-router-dom';
 
 function ModalExampleModal() {
   const [open, setOpen] = React.useState(false)
@@ -30,6 +31,8 @@ function ModalExampleModal() {
     return currentPosts;
   };
   
+  let navigate = useNavigate();
+  
    //승인카테고리
   const approveHandler = (s) => {
     s.preventDefault();
@@ -42,7 +45,8 @@ function ModalExampleModal() {
   
   //전체카테고리
    const allHandler = (s) => {
-    
+     navigate("/admin")
+    window.location.reload()
   };
     
 

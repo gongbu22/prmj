@@ -2,6 +2,7 @@ import { Card, Image } from 'semantic-ui-react'
 import './CardModule.css';
 import CardModal from './CardModal'
 import CardFavourite from './CardFavourite';
+import { MdOutlineHome, MdComputer, MdToday, MdOutlineUpdate, MdOutlineDescription, MdOutlineMouse,MdPerson } from 'react-icons/md';
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -10,36 +11,35 @@ styleLink.href =
 document.head.appendChild(styleLink);
 
 const CardExampleCard = ({card}) => {
-  
+  const user = JSON.parse(localStorage.getItem("USER"));
+  console.log(user.ID)
   return(
 
     <div className="card">
     {card.map((card)=> (
-    <div>
+    <div className="dd" style={{width:"25%", float:"left"}}>
         <Card key={card.EDU_CODE} style={{margin: "30px"}} >
         <Card.Content>
           <Card.Meta>
-            <span className='websiteList'>사이트명: {card.WEBSITE_LIST}</span>
           </Card.Meta>
           <Card.Header>
-            <span className='courseName'>교육과정명: {card.COURSE_NAME}</span>
           </Card.Header>
           <Card.Meta>
-            <span className='beginDate'>교육과정수업날: {card.BEGIN_DATE}</span>
           </Card.Meta>
           <Card.Description>
-            <span className='courseDuration'>교육과정수업기간:{card.COURSE_DURATION}</span>
+            <ul className="carddetailPage">
+                <li className="cardlist"><p className="b"><MdComputer/>       <b>{card.COURSE_NAME}</b></p></li>
+                <li className="cardlist"><p className="b"><MdOutlineHome/>        {card.WEBSITE_LIST}</p></li>
+                <li className="cardlist"><p className="b"><MdToday/>        {card.BEGIN_DATE}</p></li>
+                <li className="cardlist"><p className="b"><MdOutlineUpdate/>      {card.COURSE_DURATION}</p></li>
+            </ul>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <CardFavourite star={card.EDU_CODE} />
+        <CardFavourite star={card.EDU_CODE} ID={user.ID} websiteList={card.WEBSITE_LIST} courseName={card.COURSE_NAME}/>
         </Card.Content>
         <CardModal code={card}/>
       </Card>
-       <div id='hidden'>
-           <span className='host'>{card.DESCRIPTION}</span>
-           <span className='region'>{card.WEBSITE}</span>
-        </div>
         </div>
       ))}
       </div>
@@ -47,3 +47,6 @@ const CardExampleCard = ({card}) => {
 }
 
 export default CardExampleCard
+
+// <CardFavourite star={card.EDU_CODE} />
+// <CardModal code={card}/>

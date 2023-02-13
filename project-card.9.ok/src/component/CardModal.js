@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import './CardModalModule.css';
+import { MdOutlineHome, MdComputer, MdToday, MdOutlineUpdate, MdOutlineDescription, MdOutlineMouse,MdPerson } from 'react-icons/md';
 
 function ModalExampleModal(code) {
   const [open, setOpen] = React.useState(false)
@@ -14,16 +15,20 @@ function ModalExampleModal(code) {
       open={open}
       trigger={<Button className="listbutton" style={{background: "linear-gradient(55.6deg, #A9DD54 0%, #56CDDD 88.09%)" , color:'white'}} >{code.code.EVENT_CODE}상세보기</Button>}
     >
-      <Modal.Header>{code.code.EDU_CODE}상세페이지</Modal.Header>
+      <Modal.Header>상세페이지</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <Header>사이트명: {code.code.WEBSITE_LIST}  </Header>
-          <p>교육과정명:  {code.code.COURSE_NAME}</p>
-          <p>교육과정수업날: {code.code.BEGIN_DATE}</p>
-          <p>교육과정기간: {code.code.COURSE_DURATION}</p>
-          <p>교육과정설명: {code.code.DESCRIPTION}</p>
-          <p>사이트주소: {code.code.WEBSITE}</p>
-          <p>사이트주소를 클릭하면 해당사이트로 이동합니다.</p>
+           <div className="carddetailPageBox">
+             <ul className="carddetailPage">
+                <li className="cardlist"><p className="c"><MdOutlineHome/></p><p className="carda">사이트명:</p> <p className="cardb">{code.code.WEBSITE_LIST}</p></li>
+                <li className="cardlist"><p className="c"><MdComputer/></p><p className="carda">교육과정명:</p> <p className="cardb"> {code.code.COURSE_NAME}</p></li>
+                <li className="cardlist"><p className="c"><MdToday /></p><p className="carda">과정일정: </p> <p className="cardb">{code.code.BEGIN_DATE}</p></li>
+                <li className="cardlist"><p className="c"><MdOutlineUpdate /></p><p className="carda">수강기간: </p> <p className="cardb">{code.code.COURSE_DURATION}</p></li>
+                <li className="cardlist"><p className="c"><MdOutlineDescription /></p><p className="carda">교육과정설명:</p> <p className="cardb bDESCRIPTION"> {code.code.DESCRIPTION}</p></li>
+                <li className="cardlist cardurl"><p className="c"><MdOutlineMouse/></p><p className="carda">주소:</p> <p className="cardb"> <a href={code.code.WEBSITE}>{code.code.WEBSITE}</a></p></li>
+                <li className="cardlist"><p className="c"><MdPerson/></p><p className="carda">작성자:</p> <p className="cardb"> {code.code.ID}</p></li>
+            </ul>
+        </div>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

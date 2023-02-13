@@ -21,13 +21,13 @@ var connection = new mysql({
     database : 'cseprmj'
 });
 
-// const noSyncConnection = noSyncMysql.createConnection({
-//     host : 'database-2.cz3zo4yskaei.ap-northeast-2.rds.amazonaws.com',
-//     user : 'prmj',
-//     port: '3306',
-//     password : '1234',
-//     database : 'cseprmj'
-// });
+const noSyncConnection = noSyncMysql.createConnection({
+    host : 'database-2.cz3zo4yskaei.ap-northeast-2.rds.amazonaws.com',
+    user : 'prmj',
+    port: '3306',
+    password : '1234',
+    database : 'cseprmj'
+});
 
 //포트확인
 app.listen(port, ()=>{
@@ -47,18 +47,26 @@ app.post('/register', (req, res) => {
     console.log("email : "+ email +"| id : " + id + " | password : " + password)
     console.log(req.body);
 
-    noSyncConnection.query("INSERT INTO USER (email, id, password) VALUES (?, ?, ?)", [email, id, password], 
-        (err, userCheck) => {
-            if(userCheck){
-                res.send(userCheck);
-                res.json(userCheck[0]);
-            }else{
-                res.send({message: " 정확히 입력해주세요 "})
-            }
+    noSyncConnection.query("SELECT * FROM USER WHERE id = ? OR email = ?", [id, email], (err, rows) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({message: "ID 검색 중 오류가 발생했습니다."});
         }
-    )
-    console.log('/register done')
-})
+
+        if (rows.length > 0) {
+            return res.status(400).send({message: "이미 있는 ID 또는 이메일입니다."});
+        }
+
+        noSyncConnection.query("INSERT INTO USER (email, id, password) VALUES (?, ?, ?)", [email, id, password], (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({message: "회원 가입 중 오류가 발생했습니다."});
+            }
+
+            return res.status(200).send({message: "계정이 생성되었습니다."});
+        });
+    });
+});
 
 app.post("/login", (req, res) => {
     const id = req.body.id;
@@ -100,28 +108,19 @@ app.post('/logout', (req, res) => {
         }
     }
     )
-    console.log('/logout done')
+    console.log('logout done')
 })
 
-app.post("/maintainLoginStatus", (req, res) => {
-    const token = req.body.token;
-
-    noSyncConnection.query("SELECT USER_CODE, EMAIL, ID, USER_GRADE from USER where TOKEN = ?", [token], 
-        function(err, result, fields) {
-            if (result[0] != null) {
-                noSyncConnection.query("UPDATE USER SET ACCESS_DATE = CURRENT_TIMESTAMP, EXPIRE_DATE = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) WHERE TOKEN = ?", [token], (err) => {
-                    if(err) {
-                        res.send('접속시간 동기화 실패')
-                    }
-                    res.json(result[0])
-                    .send();
-                })
-            }else {
-                res.send('토큰이 존재하지 않음');
-            }
+app.delete('/mypage', (req, res) => {
+    const id = req.body.id
+    noSyncConnection.query("DELETE FROM USER WHERE ID = ?", [id], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({message: "회원탈퇴 중 오류가 발생했습니다."});
         }
-    )
-})
+        return res.status(200).send({message: "회원탈퇴가 완료되었습니다."});
+    });
+});
 
 //Card
 app.get("/cardList", (req, res)=> {
@@ -170,15 +169,23 @@ app.get("/weekend", (req, res) => {
 
 //Card 카드관심행사추가
 app.get("/cardfavourite", (req,res) => {
-    console.log(req.query.star);
-    var result = req.query.star;
-    // const star = connection.query('select * from EVENT2 where EVENT_CODE='+result);
-    console.log(result[0]['WEBSITE_LIST'])
+    var star = req.query.star;
+    var ID = req.query.ID;
+    var websiteList=req.query.websiteList;
+    var courseName=req.query.courseName;
+        console.log(courseName);
+   
+    // const addStar = connection.query(
+    //     'insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME) select EDU_CODE, WEBSITE_LIST, COURSE_NAME from IT_EDU where EDU_CODE='+star+' AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE='+star+');'
+    //     )
+    // const addID = connection.query("insert into ")
     
-    //const addStar = connection.query('insert into FAVOURITE_EVENT2(EVENT_CODE, FAVOURITE_EVENT_NAME, FAVOURITE_EVENT_BEGIN_DATE, FAVOURITE_EVENT_END_DATE, FAVOURITE_EVENT_PLACE) values(?,?,?,?,?) select * from EVENT2 where EVENT_CODE='+result
-    const addStar = connection.query(
-        'insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME) select EDU_CODE, WEBSITE_LIST, COURSE_NAME from IT_EDU where EDU_CODE='+result+' AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE='+result+');'
-        )
+    const result = connection.query("insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME, ID) values(?,?,?,?) select EDU_CODE from FAVOURITE_COURSE where EDU_CODE="+star+"AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE="+star+");",[
+            star,
+            websiteList,
+            courseName,
+            ID
+        ])
     
     console.log("추가")
     const fAll= connection.query("select * from FAVOURITE_COURSE")
@@ -191,8 +198,8 @@ app.get("/cardfavourite", (req,res) => {
 //AddEvent
 app.post("/add", (req, res)=> {
     const add = req.body;
-    
-    const result = connection.query("insert into IT_EDU(WEBSITE_LIST, COURSE_NAME, BEGIN_DATE, COURSE_DURATION, DESCRIPTION, WEBSITE ) values(?,?,?,?,?,?);"
+    console.log(add)
+    const result = connection.query("insert into IT_EDU(WEBSITE_LIST, COURSE_NAME, BEGIN_DATE, COURSE_DURATION, DESCRIPTION, WEBSITE, ID ) values(?,?,?,?,?,?,?);"
         ,[
             // add['code'],
             add['WEBSITE_LIST'],
@@ -200,7 +207,8 @@ app.post("/add", (req, res)=> {
             add['BEGIN_DATE'],
             add['COURSE_DURATION'],
             add['DESCRIPTION'],
-            add['WEBSITE']
+            add['WEBSITE'],
+            add['ID']
         ]
         )
     console.log(result);
@@ -211,7 +219,9 @@ app.post("/add", (req, res)=> {
 
 //userList
 app.get("/userList", (req, res) => {
-    const list = connection.query("select * from IT_EDU order by EDU_CODE desc")
+    const id=req.query.ID
+    console.log(id)
+    const list = connection.query("select * from IT_EDU where ID='"+id+"'order by EDU_CODE desc")
     console.log(list);
     res.json(list);
 })

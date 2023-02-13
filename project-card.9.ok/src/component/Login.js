@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./login.css";
+import "./LoginModule.css";
 import Axios from "axios";
 import { NavLink, useNavigate } from 'react-router-dom';
 // import { Modal, Button } from 'react-bootstrap';
@@ -12,9 +12,10 @@ const Login = () => {
     const [token, setToken] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
 
-    const login = (e) => {
+    const login = async(e) => {
       e.preventDefault();
-      Axios.post("http://localhost:3001/login",
+      try{
+      const response = await Axios.post("http://3.38.26.169:3001/login",
         {
           id: id,
           password: password
@@ -31,13 +32,16 @@ const Login = () => {
           console.error(err);
         });
         document.location.href = '/'
+      } catch(err) {
+        console.log("err", err)
+    }
     };
     
     return(
       <div className="container">
         <div className="loginForm">
           <form>
-            <h4> 로그인 하기 </h4>
+            <h4> KIEP </h4>
             <label htmlFor="username"> 아이디 </label>
             <input className="textInput" type="text" name="username" onChange={(e) => {setId(e.target.value)}} placeholder="아이디를 입력하세요" required />
             <label htmlFor="password"> 비밀번호 </label>
@@ -45,11 +49,10 @@ const Login = () => {
             <input className="button" type="submit" onClick={login} value="Login" />
             <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '5px'}}>{loginStatus}</h1>
             <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '5px'}}>{token}</h1>
-            <NavLink to="/register" style={{color: 'Blue', fontSize: '15px', textAlign: 'center', marginTop: '5px', }}> 회원가입하기 </NavLink>
           </form>
         </div>
       </div>
     );
-  }
+}
 
 export default Login;
