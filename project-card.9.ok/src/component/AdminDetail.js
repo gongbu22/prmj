@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, Link } from "react-router-dom"; // 추가된 부분
+import './DetailModule.css';
 
 function TestDetail() {
     const location = useLocation(); // 추가된 부분
@@ -14,15 +15,17 @@ function TestDetail() {
   
   
     return (
-        <div>
-            사이트명: {WEBSITE_LIST}
-            교육과정명: {COURSE_NAME}
-            과정일정: {BEGIN_DATE}
-            수강기간: {COURSE_DURATION}
-            설명: {DESCRIPTION}
-            주소: <a href={WEBSITE}>{WEBSITE}</a>
-            굴쓴이: {ID}
-        <Link to={"/admin"}><button>닫기</button></Link>
+        <div className="detailPageBox">
+            <ul className="detailPage">
+                <li className="list"><p className="a">사이트명:</p> <p className="b">{WEBSITE_LIST}</p></li>
+                <li className="list"><p className="a">교육과정명:</p> <p className="b"> {COURSE_NAME}</p></li>
+                <li className="list"><p className="a">과정일정: </p> <p className="b">{BEGIN_DATE}</p></li>
+                <li className="list"><p className="a">수강기간: </p> <p className="b">{COURSE_DURATION}</p></li>
+                <li className="list"><p className="a">설명:</p> <p className="b bDESCRIPTION"> {DESCRIPTION}</p></li>
+                <li className="list listWEBSITE"><p className="a">주소:</p> <p className="b"> <a href={WEBSITE}>{WEBSITE}</a></p></li>
+                <li className="list"><p className="a">작성자:</p> <p className="b"> {ID}</p></li>
+                <li className="list"><Link to={"/admin"}><button className="listDelete listbutton">닫기</button></Link></li>
+            </ul>
         </div>
     )
 }

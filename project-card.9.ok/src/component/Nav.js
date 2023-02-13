@@ -9,7 +9,6 @@ import User from './User';
 import UserUpdate from './UserUpdate'
 import UserAdd from './UserAdd'
 import UserDetail from './UserDetail'
-import UserDelete from './UserDelete'
 import FavouriteDetail from './FavouriteDetail'
 import AdminDetail from './AdminDetail'
 
@@ -74,7 +73,6 @@ const Nav =()=> {
           <Route path="/userUpdate" element={<UserUpdate />}></Route>
           <Route path="/userAdd" element={<UserAdd />}></Route>
           <Route path="/userDetail" element={<UserDetail />}></Route>
-          <Route path="/userDelete" element={<UserDelete />}></Route>
         </Routes>
       </div>
     )

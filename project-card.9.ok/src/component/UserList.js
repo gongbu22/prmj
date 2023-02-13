@@ -23,17 +23,17 @@ function App({list}) {
     } 
     
   return (
-      <div>
+      <div className="tablesize">
       <table border='1'>
         <tr>
-                <th>번호</th>
-                <th>사이트명</th>
-                <th>교육과정명</th>
-                <th>과정기간</th>
-                <th>작성자</th>
-                <th>상세보기</th>
-                <th>수정하기</th>
-                <th>삭제하기</th>
+                <th className="code">번호</th>
+                <th className="websiteList">사이트명</th>
+                <th className="courseName">교육과정명</th>
+                <th className="courseDuration">과정기간</th>
+                <th className="id">작성자</th>
+                <th className="detail">상세보기</th>
+                <th className="update">수정하기</th>
+                <th className="delete">삭제하기</th>
         </tr>
        {list.map((f)=> (
            
@@ -54,7 +54,7 @@ function App({list}) {
                     WEBSITE:f.WEBSITE,
                     ID:f.ID
                     }}>
-                    <button>상세보기</button>
+                    <button className="listbutton">상세보기</button>
                     </Link></td>
                     
                     <td>{f.PUBLICITY==="NO"?<Link to={"/userUpdate"} state={{
@@ -67,10 +67,10 @@ function App({list}) {
                     WEBSITE:f.WEBSITE,
                     ID:f.ID
                     }}>
-                    <button>수정하기</button>
+                    <button className="listbutton">수정하기</button>
                     </Link>:"수정불가"}</td>
                     
-                    <td>{f.PUBLICITY==="NO"?<input type='button' name={f.EDU_CODE} value={"삭제"} onClick={listDelete }></input>:"삭제불가"}</td>
+                    <td>{f.PUBLICITY==="NO"?<input type='button' name={f.EDU_CODE} value={"삭제"} onClick={listDelete } className="listbutton"></input>:"삭제불가"}</td>
                 </tr>
            
          

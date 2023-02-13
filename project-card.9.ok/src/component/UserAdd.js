@@ -115,9 +115,9 @@ const TestAdd =() => {
             </div>
           </div>
             <div className='bottomBottom'>
-                <button type="submit" className='okButton'><b>등록</b></button>
+                <button type="submit" className='okButton listbutton'><b>등록</b></button>
             </div>
-            <Link to={"/user"}><button>닫기</button></Link>
+            <Link to={"/user"}><button className="listbutton">닫기</button></Link>
         </form>
       </div>
     </div>

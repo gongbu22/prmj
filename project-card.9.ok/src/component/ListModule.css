@@ -1,10 +1,64 @@
-table {
+.tablesize {
+    text-align: center;
     width: 100%;
-    border: 1px solid #444444;
+}
+
+table {
+    width: 80%;
+    border: 1px solid darkgray;
     border-collapse: collapse;
-    margin: 10px;
-    background: lightgreen;
+    margin: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
+  
+  th {
+      background: #D9D9D9;
+      color: black;
+  }
+  
   th, td {
-    border: 1px solid #444444;
+     border-right: hidden;
+     border-left: hidden;
+    border-bottom: 2px solid lightgray;
+    padding : 0.3em;
+  }
+  
+  .code {
+      width: 35px;
+  }
+  
+  .websiteList {
+      width: 200px;
+  }
+  
+  .courseName {
+      width: 200px;
+  }
+  
+  .courseDuration {
+      width: 80px;
+  }
+  
+  .id {
+      width: 80px;
+  }
+  
+  .detail, .delete, .approve, .update {
+      width: 100px;
+  }
+  
+  .approve {
+      width: 100px;
+  }
+  
+  .yesOrNo {
+      width: 100px;
+  }
+  
+  .button {
+      cursor: pointer;
+      border: none;
+      /*background-color:transparent; 버튼투명하게*/ 
   }

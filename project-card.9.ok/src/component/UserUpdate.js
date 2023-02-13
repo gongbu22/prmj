@@ -1,7 +1,8 @@
 import React from 'react';
-import { useLocation, Link } from "react-router-dom"; // 추가된 부분
-import { useEffect, useState } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom"; // 추가된 부분
+import { useState } from "react";
 import axios from "axios";
+import './DetailModule.css';
 
 function TestDetail() {
     const location = useLocation(); // 추가된 부분
@@ -13,6 +14,8 @@ function TestDetail() {
   const DESCRIPTION = location.state?.DESCRIPTION;
   const WEBSITE = location.state?.WEBSITE;
   const ID = location.state?.ID;
+  
+  let navigate = useNavigate();
   
   //수정
     
@@ -68,24 +71,28 @@ function TestDetail() {
               .then((res) => console.log(res));
               
         alert("수정되었습니다. 관리자의 승인을 기다려주세요.")
+        navigate("/user")
+      window.location.reload()
         
     }
     
     
     return (
-        <div>
-        <form onSubmit={saveClick}>
-                <input value={EDU_CODE}></input>
-                <input defaultvalue={websiteList} placeholder= {websiteList} onChange={handlewebsiteList}></input>
-                <input defaultvalue={courseName} placeholder= {courseName} onChange={handlecourseName}></input>
-                <input defaultvalue={beginDate} placeholder= {beginDate} onChange={handlebeginDate}></input>
-                <input defaultvalue={courseDuration} placeholder= {courseDuration} onChange={handlecourseDuration}></input>
-                <div>설명 : <input defaultvalue={description} placeholder= {description} onChange={handledescription}></input></div>
-                <input defaultvalue={website} placeholder= {website} onChange={handlewebsite}></input>
-                <input defaultvalue={id} placeholder= {id} onChange={handleid}></input>
-            <button type="submit">수정완료</button>
-        </form>
-        <Link to={"/user"}><button>닫기</button></Link>
+        <div className="detailPageBox">
+            <ul className="detailPage">
+                <form onSubmit={saveClick} >
+                        <li className="list"><p className="a">번호: </p><p className="b">{EDU_CODE}</p></li>
+                        <li className="list"><p className="a">사이트명: </p><p className="b"><input className="input" defaultvalue={websiteList} placeholder= {websiteList} onChange={handlewebsiteList}></input></p></li>
+                        <li className="list"><p className="a">교육과정명: </p><p className="b"><input className="input" defaultvalue={courseName} placeholder= {courseName} onChange={handlecourseName}></input></p></li>
+                        <li className="list"><p className="a">과정일정: </p><p className="b"><input className="input" defaultvalue={beginDate} placeholder= {beginDate} onChange={handlebeginDate}></input></p></li>
+                        <li className="list"><p className="a">수강기간: </p><p className="b"><input className="input" defaultvalue={courseDuration} placeholder= {courseDuration} onChange={handlecourseDuration}></input></p></li>
+                        <li className="list"><p className="a">설명: </p><p className="b "><input className="userUpdateDescription" defaultvalue={description} placeholder= {description} onChange={handledescription}></input></p></li>
+                        <li className="list listWEBSITE"><p className="a">주소: </p><p className="b"><input className="input" defaultvalue={website} placeholder= {website} onChange={handlewebsite}></input></p></li>
+                        <li className="list"><p className="a">작성자: </p><p className="b"><input className="input" defaultvalue={id} placeholder= {id} onChange={handleid}></input></p></li>
+                    <li className="list"><button type="submit" className="listUpdate listbutton">수정완료</button></li>
+                </form>
+                <li className="list"><Link to={"/user"}><button className="listDelete listbutton">닫기</button></Link></li>
+            </ul>
         </div>
     )
 }

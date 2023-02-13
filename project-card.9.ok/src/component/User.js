@@ -3,11 +3,12 @@ import UserList from './UserList';
 import axios from 'axios';
 import Pagination from './Pagination';
 import {Link} from 'react-router-dom';
+import './ButtonModule.css';
 
 function User() {
     const [lists, setLists] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(3);
+    const [postsPerPage, setPostsPerPage] = useState(10);
     
    
    useEffect(() => {
@@ -31,7 +32,7 @@ function User() {
     return (
         <div>
             <Link to={"/userAdd"} >
-                <button>교육과정 추가하기</button>
+                <button className="listbutton">교육과정 추가하기</button>
             </Link>
             
             <UserList list={currentPosts(lists)}/>

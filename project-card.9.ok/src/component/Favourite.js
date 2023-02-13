@@ -6,6 +6,7 @@ import moment from 'moment';
 import FavouriteList from './FavouriteList';
 import Pagination from './Pagination';
 import {useNavigate} from 'react-router-dom';
+import './ButtonModule.css';
 
 function ModalExampleModal() {
   

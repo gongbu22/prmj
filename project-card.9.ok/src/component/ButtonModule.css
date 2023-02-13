@@ -1,0 +1,12 @@
+.listbutton {
+    background: #A9DD54;
+    border: none;
+    color: white;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 3px;
+}
+

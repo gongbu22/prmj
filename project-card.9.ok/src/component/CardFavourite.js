@@ -17,7 +17,7 @@ function Favourite(star) {
     return(
         <div>
         <form>
-        <input type='button' value='관심행사추가' name={star.star} onClick={submit} style={{float: 'right'}}></input>
+        <input type='button' value='관심행사추가' name={star.star} onClick={submit} style={{float: 'right'}} className="listbutton"></input>
         </form>
         </div>
     )

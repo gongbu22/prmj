@@ -6,16 +6,13 @@ function ModalExampleModal(code) {
   const [open, setOpen] = React.useState(false)
   const [count, setCount] = React.useState(0);
   
-  const handleClick = () => {
-    setCount(count + 1);
-  };
   
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button onClick={handleClick}  style={{background: "linear-gradient(55.6deg, #A9DD54 0%, #56CDDD 88.09%)" , color:'white'}} >{code.code.EVENT_CODE}상세보기</Button>}
+      trigger={<Button className="listbutton" style={{background: "linear-gradient(55.6deg, #A9DD54 0%, #56CDDD 88.09%)" , color:'white'}} >{code.code.EVENT_CODE}상세보기</Button>}
     >
       <Modal.Header>{code.code.EDU_CODE}상세페이지</Modal.Header>
       <Modal.Content>
@@ -30,7 +27,7 @@ function ModalExampleModal(code) {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button color='black' onClick={() => setOpen(false)}>
+        <Button color='black' onClick={() => setOpen(false)} className="listbutton">
           닫기
         </Button>
         

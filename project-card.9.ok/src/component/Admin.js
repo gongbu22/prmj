@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Pagination from './Pagination';
 import AdminList from './AdminList'
+import './ButtonModule.css';
 
 function ModalExampleModal() {
   const [open, setOpen] = React.useState(false)
@@ -38,11 +39,18 @@ function ModalExampleModal() {
       setAdmin(res.data);
     });
   };
+  
+  //전체카테고리
+   const allHandler = (s) => {
+    
+  };
     
 
   return (
      <div>
-     승인여부:  <input type="button" value="승인요청" onClick={approveHandler}></input>
+     승인여부:  <input type="button" value="승인요청" onClick={approveHandler} className="listbutton"></input>
+      <input type="button" value="전체" onClick={allHandler} className="listbutton"></input>
+     
       <AdminList admin={currentPosts(admin)}/>
       <div className="pagination">
         <Pagination 
