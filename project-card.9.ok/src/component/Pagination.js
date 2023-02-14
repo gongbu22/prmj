@@ -11,6 +11,7 @@ const PageUl = styled.ul`
   border-top: none;
   border-bottom: none;
   background-color: white;
+  width:30%
 `;
 
 const PageLi = styled.li`
@@ -18,6 +19,7 @@ const PageLi = styled.li`
   font-size: 17px;
   font-weight: 600;
   padding: 5px;
+  border: 2px solid #A9DD54;
   border-radius: 5px;
   width: 25px;
   &:hover {

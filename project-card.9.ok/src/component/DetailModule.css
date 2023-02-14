@@ -63,7 +63,7 @@
     width: 100%;
 }
 .bdetailDESCRIPTION {
-    margin-left: 50px;
+     margin-left: 50px;
     float: left;
     width: 80%;
     height: 100px;
@@ -78,10 +78,14 @@
     float: right;
 }
 
+.listWEBSITE{
+    margin-top: 10%;
+}
+
 .userUpdateDescription {
     /*margin-left:100px;*/
     width: 100%;
-    height: 100px;
+    height: 50px;
     margin-right: 30px;
 }
 
@@ -107,6 +111,7 @@ input:focus::placeholder{
 
 .userAddForm {
     width: 80%;
+    height: 500px;
 }
 
 .carda {
@@ -126,5 +131,8 @@ input:focus::placeholder{
 .detailsizeb {
    padding-right: 20px;
    padding-left: 10px;
-   color:#96C44B;
+   color:#7DBF51;
+}
+.address{
+    margin-top: 10px;
 }

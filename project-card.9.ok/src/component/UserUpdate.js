@@ -81,14 +81,14 @@ function TestDetail() {
         <div className="detailPageBox">
             <ul className="detailPage">
                 <form onSubmit={saveClick} >
-                        <li className="list"><p className="a">번호: </p><p className="b">{EDU_CODE}</p></li>
-                        <li className="list"><p className="a">사이트명: </p><p className="b"><input className="input" defaultvalue={websiteList} placeholder= {websiteList} onChange={handlewebsiteList}></input></p></li>
-                        <li className="list"><p className="a">교육과정명: </p><p className="b"><input className="input" defaultvalue={courseName} placeholder= {courseName} onChange={handlecourseName}></input></p></li>
-                        <li className="list"><p className="a">과정일정: </p><p className="b"><input className="input" defaultvalue={beginDate} placeholder= {beginDate} onChange={handlebeginDate}></input></p></li>
-                        <li className="list"><p className="a">수강기간: </p><p className="b"><input className="input" defaultvalue={courseDuration} placeholder= {courseDuration} onChange={handlecourseDuration}></input></p></li>
-                        <li className="list"><p className="a">설명: </p><p className="b "><input className="userUpdateDescription" defaultvalue={description} placeholder= {description} onChange={handledescription}></input></p></li>
-                        <li className="list listWEBSITE"><p className="a">주소: </p><p className="b"><input className="input" defaultvalue={website} placeholder= {website} onChange={handlewebsite}></input></p></li>
-                        <li className="list"><p className="a">작성자: </p><p className="b"><input className="input" defaultvalue={id} placeholder= {id} onChange={handleid}></input></p></li>
+                        <li className="list"><p className="adetail">번호: </p><p className="b">{EDU_CODE}</p></li>
+                        <li className="list"><p className="adetail">사이트명: </p><p className="b"><input className="input" defaultvalue={websiteList} placeholder= {websiteList} onChange={handlewebsiteList}></input></p></li>
+                        <li className="list"><p className="adetail">교육과정명: </p><p className="b"><input className="input" defaultvalue={courseName} placeholder= {courseName} onChange={handlecourseName}></input></p></li>
+                        <li className="list"><p className="adetail">과정일정: </p><p className="b"><input className="input" defaultvalue={beginDate} placeholder= {beginDate} onChange={handlebeginDate}></input></p></li>
+                        <li className="list"><p className="adetail">수강기간: </p><p className="b"><input className="input" defaultvalue={courseDuration} placeholder= {courseDuration} onChange={handlecourseDuration}></input></p></li>
+                        <li className="list"><p className="adetail">설명: </p><p className="b "><input className="userUpdateDescription" defaultvalue={description} placeholder= {description} onChange={handledescription}></input></p></li>
+                        <li className="list listWEBSITE"><p className="adetaila">주소: </p><p className="b"><input className="input" defaultvalue={website} placeholder= {website} onChange={handlewebsite}></input></p></li>
+                        <li className="list"><p className="adetail">작성자: </p><p className="b">{id}</p></li>
                     <li className="list"><button type="submit" className="listUpdate listbutton">수정완료</button></li>
                 </form>
                 <li className="list"><Link to={"/user"}><button className="listDelete listbutton">닫기</button></Link></li>

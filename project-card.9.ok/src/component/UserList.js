@@ -68,9 +68,9 @@ function App({list}) {
                     ID:f.ID
                     }}>
                     <button className="listbutton">수정하기</button>
-                    </Link>:"수정불가"}</td>
+                    </Link>:<button className="listbuttonrednohover">수정불가</button>}</td>
                     
-                    <td>{f.PUBLICITY==="NO"?<input className="listbutton" type='button' name={f.EDU_CODE} value={"삭제"} onClick={listDelete }></input>:"삭제불가"}</td>
+                    <td>{f.PUBLICITY==="NO"?<input className="listbutton" type='button' name={f.EDU_CODE} value={"삭제"} onClick={listDelete }></input>:<button className="listbuttonrednohover">삭제불가</button>}</td>
                 </tr>
            
          

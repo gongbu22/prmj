@@ -66,7 +66,7 @@ const TestAdd =() => {
       .post("http://3.38.26.169:3001/add", body)
       .then((res) => console.log(res));
       
-    alert("행사가 등록되었습니다. 승인을 기다려주세요.")
+    alert("교육과정이 등록되었습니다. 승인을 기다려주세요.")
     navigate("/user")
     window.location.reload()
     
@@ -94,12 +94,12 @@ const TestAdd =() => {
           className="userAddForm"
           >
           <Link to={"/user"}><button className="deletebutton"><MdClose/></button></Link>
-            <li className="list"><p className="a">사이트명: </p><p className="b"><input placeholder= "사이트명을 입력해주세요." className="input" onChange={WebsiteListHandler}></input></p></li>
-            <li className="list"><p className="a">교육과정명: </p><p className="b"><input placeholder="교육과정명을 입력해주세요." className="input" onChange={CourseNameHandler}></input></p></li>
-            <li className="list"><p className="a">과정일정: </p><p className="b"><input placeholder="평일반/주말반 주별 횟수를 입력해주세요. ex) 평일반 주 2회" className="input"  onChange={BeginDateHandler}></input></p></li>
-            <li className="list"><p className="a">수강기간: </p><p className="b"><input placeholder="수강기간을 입력해주세요. ex) 6개월" className="input" onChange={CourseDurationHandler}></input></p></li>
-            <li className="list"><p className="a">설명: </p><p className="b "><input placeholder="교육과정에 대한 자세한 설명을 입력해주세요." className="userUpdateDescription"  onChange={DescriptionHandler}></input></p></li>
-            <li className="list"><p className="a">주소: </p><p className="b"><input placeholder="교육과정의 해당사이트 주소를 입력해주세요." className="input" onChange={WebsiteHandler}></input></p></li>
+            <li className="list"><p className="adetail">사이트명: <input placeholder= "사이트명을 입력해주세요." className="input" onChange={WebsiteListHandler}></input></p></li>
+            <li className="list"><p className="adetail">교육과정명:<input placeholder="교육과정명을 입력해주세요." className="input" onChange={CourseNameHandler}></input></p></li>
+            <li className="list"><p className="adetail">과정일정: <input placeholder="평일반/주말반 주별 횟수를 입력해주세요. ex) 평일반 주 2회" className="input"  onChange={BeginDateHandler}></input></p></li>
+            <li className="list"><p className="adetail">수강기간: <input placeholder="수강기간을 입력해주세요. ex) 6개월" className="input" onChange={CourseDurationHandler}></input></p></li>
+            <li className="list "><p className="adetail">설명: <input placeholder="교육과정에 대한 자세한 설명을 입력해주세요." className="userUpdateDescription"  onChange={DescriptionHandler}></input></p></li>
+            <li className="list listWEBSITE"><p className="adetail ">주소: <input placeholder="교육과정의 해당사이트 주소를 입력해주세요." className="input" onChange={WebsiteHandler}></input></p></li>
             <div className='bottomBottom'>
             <button type="submit" className='okButton listbutton addRegistButton'><b>등록</b></button>
             </div>

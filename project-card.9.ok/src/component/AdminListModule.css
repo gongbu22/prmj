@@ -4,6 +4,7 @@
     margin-top:30px;
     width:500px;
     height: 60px;
+    border:none;
 }
 
 .listTwo {
@@ -25,3 +26,22 @@
     float:left;
     margin-left: 50px;
 }
+
+.adminpagination {
+    position: relative;
+    /*left:38%;*/
+    /*bottom:18%;*/
+    /*width:30%;*/
+    margin-top: 5%;
+    bottom:0;
+}
+
+.admincategory{
+    margin-left:40%;
+    margin-top:30px;
+}
+
+.address{
+    margin-top: 20%;
+}
+

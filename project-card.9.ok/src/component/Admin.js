@@ -5,6 +5,7 @@ import Pagination from './Pagination';
 import AdminList from './AdminList'
 import './ButtonModule.css';
 import {useNavigate} from 'react-router-dom';
+import './AdminListModule.css';
 
 function ModalExampleModal() {
   
@@ -15,7 +16,7 @@ function ModalExampleModal() {
   const [admin, setAdmin] =useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(9);
   
   useEffect(() => {
         axios.get('http://3.38.26.169:3001/admin').then((res) => {
@@ -55,12 +56,13 @@ function ModalExampleModal() {
 
   return (
      <div>
+     <button  className="userAddButton" onClick={()=>{window.open(url)}}>크롤링실행</button>
+     <div className="admincategory">
      승인여부:  <input type="button" value="승인요청" onClick={approveHandler} className="listbutton"></input>
       <input type="button" value="전체" onClick={allHandler} className="listbutton"></input>
-     
-     <button onClick={()=>{window.open(url)}}>크롤링실행</button>
+     </div>
       <AdminList admin={currentPosts(admin)}/>
-      <div className="pagination">
+      <div className="adminpagination">
         <Pagination 
           postsPerPage={postsPerPage}
           totalPosts={admin.length}
