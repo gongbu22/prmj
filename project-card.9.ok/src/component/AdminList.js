@@ -52,18 +52,18 @@ function ModalExampleModal({admin}) {
     }
 
   return (
-     <div className="tablesize">
+     <div>
       <table border='1'>
         <tr>
-                <th className="code">번호</th>
-                <th className="websiteList">사이트명</th>
-                <th className="courseName">교육과정명</th>
-                <th className="courseDuration">과정기간</th>
-                <th className="id">작성자</th>
-                <th className="detail">상세보기</th>
-                <th className="yesOrNo">승인여부</th>
-                <th className="approve">교육과정승인</th>
-                <th className="delete">교육과정삭제</th>
+                <th>번호</th>
+                <th>사이트명</th>
+                <th>교육과정명</th>
+                <th>과정기간</th>
+                <th>작성자</th>
+                <th>상세보기</th>
+                <th>승인여부</th>
+                <th>교육과정승인</th>
+                <th>교육과정삭제</th>
         </tr>
        {admin.map((f)=> (
               <tr key={f.EDU_CODE}>
@@ -83,11 +83,11 @@ function ModalExampleModal({admin}) {
                     WEBSITE:f.WEBSITE,
                     ID:f.ID
                     }}>
-                    <button className="listbutton">상세보기</button>
+                    <button>상세보기</button>
                     </Link></td>
                 <td>{f.PUBLICITY==="YES" ? <p>승인</p>:<p>승인요청중</p>}</td>
                 <td><input type='button' name={f.EDU_CODE} value={f.PUBLICITY==="YES"? "승인취소": "승인하기"} onClick={f.PUBLICITY==="YES"? noApprove: approve} className="listbutton"></input></td>
-                <td><input type='button' name={f.EDU_CODE} value='삭제' onClick={listDelete} className="listbutton"></input></td>
+                <td><input type='button' name={f.EDU_CODE} value='삭제' onClick={listDelete}></input></td>
               </tr>
      ))}
      </table>

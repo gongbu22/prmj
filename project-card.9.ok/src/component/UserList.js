@@ -54,7 +54,7 @@ function App({list}) {
                     WEBSITE:f.WEBSITE,
                     ID:f.ID
                     }}>
-                    <button>상세보기</button>
+                    <button className="listbutton">상세보기</button>
                     </Link></td>
                     
                     <td>{f.PUBLICITY==="NO"?<Link to={"/userUpdate"} state={{
@@ -67,10 +67,10 @@ function App({list}) {
                     WEBSITE:f.WEBSITE,
                     ID:f.ID
                     }}>
-                    <button>수정하기</button>
+                    <button className="listbutton">수정하기</button>
                     </Link>:"수정불가"}</td>
                     
-                    <td>{f.PUBLICITY==="NO"?<input type='button' name={f.EDU_CODE} value={"삭제"} onClick={listDelete }></input>:"삭제불가"}</td>
+                    <td>{f.PUBLICITY==="NO"?<input className="listbutton" type='button' name={f.EDU_CODE} value={"삭제"} onClick={listDelete }></input>:"삭제불가"}</td>
                 </tr>
            
          

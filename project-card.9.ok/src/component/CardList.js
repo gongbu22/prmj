@@ -12,7 +12,7 @@ document.head.appendChild(styleLink);
 
 const CardExampleCard = ({card}) => {
   const user = JSON.parse(localStorage.getItem("USER"));
-  console.log(user.ID)
+  
   return(
 
     <div className="card">
@@ -36,7 +36,7 @@ const CardExampleCard = ({card}) => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <CardFavourite star={card.EDU_CODE} ID={user.ID} websiteList={card.WEBSITE_LIST} courseName={card.COURSE_NAME}/>
+        <CardFavourite star={card.EDU_CODE} websiteList={card.WEBSITE_LIST} courseName={card.COURSE_NAME}/>
         </Card.Content>
         <CardModal code={card}/>
       </Card>

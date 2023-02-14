@@ -9,7 +9,6 @@ import './ButtonModule.css';
 
 
 const Cards = () => {
-  
  
   const [cards, setCards] = useState([]);
   const [temp, setSearch] = useState([]);
@@ -110,7 +109,7 @@ const Cards = () => {
         <button type="submit" className="searchButton listbutton">검색</button>
       </form>
       <div className="cardcategorybox">
-      <input type="button" value="메가스터디" onClick={megaHandler} className=" cardcategory"></input>
+       <input type="button" value="메가스터디" onClick={megaHandler} className=" cardcategory"></input>
       <input type="button" value="IT뱅크" onClick={itbankHandler} className=" cardcategory cardcategoryitbank"></input>
       
       / <input type="button" value="평일반" onClick={weekHandler} className=" cardcategory"></input>

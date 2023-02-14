@@ -22,8 +22,8 @@ function ModalExampleModal(code) {
              <ul className="carddetailPage">
                 <li className="cardlist"><p className="c"><MdOutlineHome/></p><p className="carda">사이트명:</p> <p className="cardb">{code.code.WEBSITE_LIST}</p></li>
                 <li className="cardlist"><p className="c"><MdComputer/></p><p className="carda">교육과정명:</p> <p className="cardb"> {code.code.COURSE_NAME}</p></li>
-                <li className="cardlist"><p className="c"><MdToday /></p><p className="carda">과정일정: </p> <p className="cardb">{code.code.BEGIN_DATE}</p></li>
-                <li className="cardlist"><p className="c"><MdOutlineUpdate /></p><p className="carda">수강기간: </p> <p className="cardb">{code.code.COURSE_DURATION}</p></li>
+                <li className="cardlist"><p className="c"><MdOutlineUpdate /></p><p className="carda">과정일정: </p> <p className="cardb">{code.code.BEGIN_DATE}</p></li>
+                <li className="cardlist"><p className="c"><MdToday /></p><p className="carda">수강기간: </p> <p className="cardb">{code.code.COURSE_DURATION}</p></li>
                 <li className="cardlist"><p className="c"><MdOutlineDescription /></p><p className="carda">교육과정설명:</p> <p className="cardb bDESCRIPTION"> {code.code.DESCRIPTION}</p></li>
                 <li className="cardlist cardurl"><p className="c"><MdOutlineMouse/></p><p className="carda">주소:</p> <p className="cardb"> <a href={code.code.WEBSITE}>{code.code.WEBSITE}</a></p></li>
                 <li className="cardlist"><p className="c"><MdPerson/></p><p className="carda">작성자:</p> <p className="cardb"> {code.code.ID}</p></li>
