@@ -4,11 +4,12 @@ import axios from 'axios';
 import Pagination from './Pagination';
 import {Link, useNavigate} from 'react-router-dom';
 import './ButtonModule.css';
+import './UserModule.css';
 
 function User() {
     const [lists, setLists] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(10);
+    const [postsPerPage, setPostsPerPage] = useState(9);
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("USER"));
 

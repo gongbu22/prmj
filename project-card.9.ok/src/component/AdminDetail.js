@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, Link } from "react-router-dom"; // 추가된 부분
 import './DetailModule.css';
 import { MdClose } from 'react-icons/md';
+import { MdOutlineHome, MdComputer, MdToday, MdOutlineUpdate, MdOutlineDescription, MdOutlineMouse,MdPerson } from 'react-icons/md';
 
 function TestDetail() {
     const location = useLocation(); // 추가된 부분
@@ -19,13 +20,13 @@ function TestDetail() {
         <div className="detailPageBox">
             <ul className="detailPage">
             <li className="list"><Link to={"/admin"}><button className="deletebutton"><MdClose/></button></Link></li>
-                <li className="list"><p className="a">사이트명:</p> <p className="b">{WEBSITE_LIST}</p></li>
-                <li className="list"><p className="a">교육과정명:</p> <p className="b"> {COURSE_NAME}</p></li>
-                <li className="list"><p className="a">과정일정: </p> <p className="b">{BEGIN_DATE}</p></li>
-                <li className="list"><p className="a">수강기간: </p> <p className="b">{COURSE_DURATION}</p></li>
-                <li className="list"><p className="a">설명:</p> <p className="b bDESCRIPTION"> {DESCRIPTION}</p></li>
-                <li className="list listWEBSITE"><p className="a">주소:</p> <p className="b"> <a href={WEBSITE}>{WEBSITE}</a></p></li>
-                <li className="list"><p className="a">작성자:</p> <p className="b"> {ID}</p></li>
+                <li className="list"><p className="adetail"><MdOutlineHome/><b className="detailsizeb">사이트명:</b>{WEBSITE_LIST}</p></li>
+                <li className="list"><p className="adetail"><MdComputer/><b className="detailsizeb">교육과정명:</b>{COURSE_NAME}</p></li>
+                <li className="list"><p className="adetail"><MdOutlineUpdate/><b className="detailsizeb">과정일정:</b>{BEGIN_DATE}</p></li>
+                <li className="list"><p className="adetail"><MdToday/><b className="detailsizeb">수강기간:</b>{COURSE_DURATION}</p></li>
+                <li className="list"><p className="adetail"><p><MdOutlineDescription/><b className="detailsizeb">설명:</b></p><p className="bdetailDESCRIPTION">{DESCRIPTION}</p></p></li>
+                <li className="list listWEBSITE"><p className="adetail"><MdOutlineMouse/><b className="detailsizeb">주소:</b><a href={WEBSITE}>{WEBSITE}</a></p></li>
+                <li className="list"><p className="adetail"><MdPerson/><b className="detailsizeb">작성자:</b>{ID}</p></li>
             </ul>
         </div>
     )

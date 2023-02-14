@@ -38,15 +38,13 @@ const Login = () => {
     };
     
     return(
-      <div className="container">
-        <div className="loginForm">
+       <div className="container">
+        <div className="logForm">
           <form>
             <h4> KIEP </h4>
-            <label htmlFor="username"> 아이디 </label>
-            <input className="textInput" type="text" name="username" onChange={(e) => {setId(e.target.value)}} placeholder="아이디를 입력하세요" required />
-            <label htmlFor="password"> 비밀번호 </label>
-            <input className="textInput" type="password" name="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="비밀번호를 입력하세요" required />
-            <input className="button" type="submit" onClick={login} value="Login" />
+            <input className="logIdInput" type="text" name="username" onChange={(e) => {setId(e.target.value)}} placeholder="아이디를 입력하세요" required />
+            <input className="logPwInput" type="password" name="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="비밀번호를 입력하세요" required />
+            <input className="logButton" type="submit" onClick={login} value="로그인" />
             <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '5px'}}>{loginStatus}</h1>
             <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '5px'}}>{token}</h1>
           </form>

@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const PageUl = styled.ul`
-  float: left;
+  float: center;
   list-style: none;
   text-align: center;
   border-radius: 3px;
-  color: white;
+  color: black;
   padding: 1px;
-  border-top: 3px solid #186ead;
-  border-bottom: 3px solid #186ead;
-  background-color: rgba(0, 0, 0, 0.4);
+  border-top: none;
+  border-bottom: none;
+  background-color: white;
 `;
 
 const PageLi = styled.li`
@@ -23,11 +23,11 @@ const PageLi = styled.li`
   &:hover {
     cursor: pointer;
     color: white;
-    background-color: #263a6c;
+    background-color: #A9DD54;
   }
   &:focus::after {
     color: white;
-    background-color: #263a6c;
+    background-color: #A9DD54;
   }
 `;
 
@@ -36,7 +36,7 @@ const PageSpan = styled.span`
   &:focus::after {
     border-radius: 100%;
     color: white;
-    background-color: #263a6c;
+    background-color: #A9DD54;
   }
 `;
 

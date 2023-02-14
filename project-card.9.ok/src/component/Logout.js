@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
     const [logoutStatus, setLogoutStatus] = useState("");
-    const [token, setToken] = useState("");
+    const [Token, setToken] = useState("");
     const navigate = useNavigate();
 
     const logout = async() => {
       try{
-      axios.post("http://localhost:3001/logout", {
+      await axios.post("http://3.38.26.169:3001/logout", {
         headers: {
-          'token': token
+          'token': Token
         }
       }).then((res) => {
         console.log(res)

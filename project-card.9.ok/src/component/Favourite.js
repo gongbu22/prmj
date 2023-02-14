@@ -13,7 +13,7 @@ function ModalExampleModal() {
   const [favourite, setFavourite] =useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(9);
   
    let navigate = useNavigate();
   

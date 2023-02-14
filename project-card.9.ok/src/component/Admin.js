@@ -7,12 +7,15 @@ import './ButtonModule.css';
 import {useNavigate} from 'react-router-dom';
 
 function ModalExampleModal() {
+  
+  const url = "http://54.180.178.89:3000/"
+  
   const [open, setOpen] = React.useState(false)
   
   const [admin, setAdmin] =useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   
   useEffect(() => {
         axios.get('http://3.38.26.169:3001/admin').then((res) => {
@@ -55,6 +58,7 @@ function ModalExampleModal() {
      승인여부:  <input type="button" value="승인요청" onClick={approveHandler} className="listbutton"></input>
       <input type="button" value="전체" onClick={allHandler} className="listbutton"></input>
      
+     <button onClick={()=>{window.open(url)}}>크롤링실행</button>
       <AdminList admin={currentPosts(admin)}/>
       <div className="pagination">
         <Pagination 

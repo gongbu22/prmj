@@ -10,56 +10,121 @@ body{
 
 .container{
   display: flex;
-  align-items: center;
-  justify-content: center;
   padding-right: 10%;
   height: 85vh;
 }
 
-.container .loginForm{
-  margin: 100px;
-}
+.container .logForm form{
 
-.container .loginForm form{
-  background-color: wheat;
+  position: absolute;
+
+  left: 50%;
+  top: 57%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 440px;
+  background: #FFFFFF;
+  border: 2px solid #A9DD54;
+  border-radius: 20px;
+
+  margin: 0px;
+  padding: 40px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 50vh;
-  width: 150%;
-  padding: 0 20px;
+  flex-wrap: nowrap;
+
 }
 
-.container .loginForm form h4{
+.container .logForm form h4{
+  color: #A9DD54;  
   font-size: 30px;
   text-align: center;
   margin-bottom: 30px;
 }
 
-.container .loginForm form label{
+.container .logId {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.container .logPw {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.container .logForm form label{
   margin-bottom: 7px;
 }
 
-.container .loginForm form .textInput{
+.container .logForm form .logIdInput{
+
+  position: relative;
+
+  top: 8%;
+  
   width: 100%;
-  height: 40px;
+  height: 50px;
   margin-bottom: 20px;
   outline: none;
-  padding: 0px 10px;
+  padding: 0px 14px;
+  border-radius: 5px;
+  font-weight: 800;
+  border: #4d7c01 solid 2px;
+
 }
 
-.container .loginForm form .button{
-  width: auto;
+.container .logForm form .logPwInput{
+
+  position: relative;
+
+  top: 12%;
+  
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 0px 14px;
+  border-radius: 5px;
+  font-weight: 800;
+  border: #4d7c01 solid 2px;
+
+
+}
+
+
+
+
+.container .logForm form .logButton{
+  
+  position: relative;
+
+  left: 0%;
+  top: 28%;
+
+  width: 316px;
+  height: 50px;
+
   padding: 8px 30px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid black;
   outline: none;
+
+  background-color: #A9DD54;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  border-radius: 8px;
+  border: #77b416 solid 2px;
+
+  cursor: pointer;
+
+
 }
 
-.container .loginForm form .button:hover{
-  background-color: aliceblue;
+.container .logForm form .button:hover{
+  background-color: #A9DD54;
 }

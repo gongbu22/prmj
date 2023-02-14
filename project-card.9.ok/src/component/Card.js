@@ -122,7 +122,7 @@ const Cards = () => {
       </div>
       </div>
         <div className="cardpagination">
-          <Pagination 
+          <Pagination className="pagegojung"
           postsPerPage={postsPerPage}
           totalPosts={cards.length}
           paginate={setCurrentPage}

@@ -135,3 +135,15 @@ Card {
 .cardcategoryitbank {
     margin-right:50px;
 }
+
+.cardpagination{
+    position: relative;
+    /*left:38%;*/
+    /*bottom:18%;*/
+    /*width:30%;*/
+    margin-top: 60%;
+}
+
+.cardList{
+    height: 80%;
+}

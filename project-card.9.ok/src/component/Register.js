@@ -36,19 +36,22 @@ function Register(){
   }
 
   return(
-    <div className="registerForm">
-    <form>
-        <h2 className="regiWelcome"> 회원가입 </h2>
-        <label htmlFor="email" className="regiLabel"> 이메일 </label>
-        <input className="regiInput" type="text" name="email" onChange={(e) => {setEmail(e.target.value)}} placeholder="이메일을 입력하세요 " required />
-        <label htmlFor="username" className="regiLabel"> 아이디 </label>
-        <input className="regiInput" type="username" name="username" onChange={(e) => {setId(e.target.value)}} placeholder="아이디를 입력하세요 " required />
-        <label htmlFor="password" className="regiLabel"> 비밀번호 </label>
-        <input className="regiInput" type="password" name="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="비밀번호를 입력하세요 " required />
-        <input className="regiButton" type="submit" onClick={register} value=" 회원가입 " />
-        <h1 style={{fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{registerStatus}</h1>
-    </form>
+    <div className="container">
+      <div className="registerForm">
+      <form>
+          <h1 className="regiWelcome"> ㅤ회원가입 </h1>
+          <label htmlFor="email" className="regiLabel"> 이메일 </label>
+          <input className="regiInput" type="text" name="email" onChange={(e) => {setEmail(e.target.value)}} placeholder="이메일을 입력하세요 " required />
+          <label htmlFor="username" className="regiLabel"> 아이디 </label>
+          <input className="regiInput" type="username" name="username" onChange={(e) => {setId(e.target.value)}} placeholder="아이디를 입력하세요 " required />
+          <label htmlFor="password" className="regiLabel2"> 비밀번호 </label>
+          <input className="regiInput" type="password" name="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="비밀번호를 입력하세요 " required />
+          <input className="regiButton" type="submit" onClick={register} value=" 회원가입 " />
+          <h1 style={{fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{registerStatus}</h1>
+      </form>
+      </div>
     </div>
+
   );
 }
 
