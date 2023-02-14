@@ -17,7 +17,7 @@ const CardExampleCard = ({card}) => {
 
     <div className="card">
     {card.map((card)=> (
-    <div className="dd" style={{width:"25%", float:"left"}}>
+    <div className="dd">
         <Card key={card.EDU_CODE} style={{margin: "30px"}} >
         <Card.Content>
           <Card.Meta>

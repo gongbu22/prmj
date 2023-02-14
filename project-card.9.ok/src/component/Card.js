@@ -109,11 +109,13 @@ const Cards = () => {
         <input className="searchinput" onChange={searchHandler} placeholder="교육과정명을 입력해주세요."></input>
         <button type="submit" className="searchButton listbutton">검색</button>
       </form>
-      사이트명: <input type="button" value="메가스터디" onClick={megaHandler} className="listbutton"></input>
-      <input type="button" value="IT뱅크" onClick={itbankHandler} className="listbutton"></input>
+      <div className="cardcategorybox">
+      <input type="button" value="메가스터디" onClick={megaHandler} className=" cardcategory"></input>
+      <input type="button" value="IT뱅크" onClick={itbankHandler} className=" cardcategory cardcategoryitbank"></input>
       
-      수강일정: <input type="button" value="평일반" onClick={weekHandler} className="listbutton"></input>
-      <input type="button" value="주말반" onClick={weekendHandler} className="listbutton"></input>
+      / <input type="button" value="평일반" onClick={weekHandler} className=" cardcategory"></input>
+      <input type="button" value="주말반" onClick={weekendHandler} className=" cardcategory"></input>
+     </div>
      </div>
      <div className="bigCard">
       <div className="cardList">

@@ -180,7 +180,7 @@ app.get("/cardfavourite", (req,res) => {
     //     )
     // const addID = connection.query("insert into ")
     
-    const result = connection.query("insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME, ID) values(?,?,?,?) select EDU_CODE from FAVOURITE_COURSE where EDU_CODE="+star+"AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE="+star+");",[
+    const result = connection.query("insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME) select EDU_CODE, WEBSITE_LIST, COURSE_NAME from IT_EDU where EDU_CODE="+star+" AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE="+star+");",[
             star,
             websiteList,
             courseName,

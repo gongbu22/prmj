@@ -34,3 +34,21 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+.cardcategory {
+    background: #FFFFFF;
+    border: 2px solid #A9DD54;
+    /*box-shadow: 1px 1px 10px rgba(96, 108, 128, 0.15);*/
+    color: #96C44B;
+    cursor: pointer;
+    margin: 3px;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 6px;
+}
+
+.cardcategory:hover, #buttonData:hover{
+    background: #96C44B;
+    color:white;
+}
