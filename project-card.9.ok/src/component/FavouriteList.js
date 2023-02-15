@@ -27,6 +27,7 @@ function FavouriteList({favourite}) {
     <table border='1'>
         <tr>
                 <th>번호</th>
+                <th>과정종류</th>
                 <th>사이트명</th>
                 <th>교육과정명</th>
                 <th>과정기간</th>
@@ -37,6 +38,7 @@ function FavouriteList({favourite}) {
        {favourite.map((f)=> (
                 <tr key={f.FCOURSE_CODE}>    
                         <td>{f.FCOURSE_CODE}</td>
+                        <td>{f.TYPE}</td>
                         <td>{f.WEBSITE_LIST}</td>
                         <td>{f.COURSE_NAME}</td>
                         <td>{f.COURSE_DURATION}</td>
@@ -50,7 +52,8 @@ function FavouriteList({favourite}) {
                         COURSE_DURATION: f.COURSE_DURATION,
                         DESCRIPTION:f.DESCRIPTION,
                         WEBSITE:f.WEBSITE,
-                        ID:f.ID
+                        ID:f.ID,
+                        TYPE:f.TYPE
                         }}>
                         <button className="listbutton">상세보기</button>
                         </Link></td>

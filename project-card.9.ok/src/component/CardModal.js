@@ -20,6 +20,7 @@ function ModalExampleModal(code) {
         <Modal.Description>
            <div className="carddetailPageBox">
              <ul className="carddetailPage">
+              <li className="cardlist"><p className="c"></p><p className="carda"><b>{code.code.TYPE}</b></p><p className="cardb"></p></li>
                 <li className="cardlist"><p className="c"><MdOutlineHome/></p><p className="carda">사이트명:</p> <p className="cardb">{code.code.WEBSITE_LIST}</p></li>
                 <li className="cardlist"><p className="c"><MdComputer/></p><p className="carda">교육과정명:</p> <p className="cardb"> {code.code.COURSE_NAME}</p></li>
                 <li className="cardlist"><p className="c"><MdOutlineUpdate /></p><p className="carda">과정일정: </p> <p className="cardb">{code.code.BEGIN_DATE}</p></li>

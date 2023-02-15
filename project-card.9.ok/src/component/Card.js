@@ -29,7 +29,7 @@ const Cards = () => {
   const megaHandler = (s) => {
     s.preventDefault();
     
-    axios.get("http://3.38.26.169:3001/megastudy").then((res) => {
+    axios.get("http://3.38.26.169:3001/national").then((res) => {
       // console.log(res)
       setCards(res.data);
     });
@@ -38,7 +38,7 @@ const Cards = () => {
   const itbankHandler = (s) => {
     s.preventDefault();
     
-    axios.get("http://3.38.26.169:3001/itbank").then((res) => {
+    axios.get("http://3.38.26.169:3001/nonational").then((res) => {
       // console.log(res)
       setCards(res.data);
     });
@@ -109,8 +109,8 @@ const Cards = () => {
         <button type="submit" className="searchButton listbutton">검색</button>
       </form>
       <div className="cardcategorybox">
-       <input type="button" value="메가스터디" onClick={megaHandler} className=" cardcategory"></input>
-      <input type="button" value="IT뱅크" onClick={itbankHandler} className=" cardcategory cardcategoryitbank"></input>
+       <input type="button" value="국비과정" onClick={megaHandler} className=" cardcategory"></input>
+      <input type="button" value="사교육과정" onClick={itbankHandler} className=" cardcategory cardcategoryitbank"></input>
       
       / <input type="button" value="평일반" onClick={weekHandler} className=" cardcategory"></input>
       <input type="button" value="주말반" onClick={weekendHandler} className=" cardcategory"></input>

@@ -28,6 +28,7 @@ const CardExampleCard = ({card}) => {
           </Card.Meta>
           <Card.Description>
             <ul className="carddetailPage">
+                <li className="cardlist" className="natinaltype"><p className="b">       <b>{card.TYPE}</b></p> <div></div></li>
                 <li className="cardlist"><p className="b"><MdComputer/>       <b>{card.COURSE_NAME}</b></p></li>
                 <li className="cardlist"><p className="b"><MdOutlineHome/>        {card.WEBSITE_LIST}</p></li>
                 <li className="cardlist"><p className="b"><MdToday/>        {card.BEGIN_DATE}</p></li>

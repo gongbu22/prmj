@@ -11,6 +11,7 @@ function Favourite(props) {
     const [codedata, setCodedata] = useState("");
     const [test, setTest] = useState("");
     
+    const isAuthenticated = user !== null;
   
 // if (star ==codedata) {
 //             alert("이미 저장되었습니다.")
@@ -58,8 +59,9 @@ useEffect(() => {
         <div>
         <form>
         <div>
+        {isAuthenticated && 
         <input type='button' value="관심과정추가" name={star} onClick={submit} style={{float: 'right'}} className="listbutton"></input>
-        
+        }
         </div> </form>
         </div>
     )

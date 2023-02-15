@@ -56,6 +56,7 @@ function ModalExampleModal({admin}) {
       <table border='1'>
         <tr>
                 <th className="code">번호</th>
+                <th className="type">과정종류</th>
                 <th className="websiteList">사이트명</th>
                 <th className="courseName">교육과정명</th>
                 <th className="courseDuration">과정기간</th>
@@ -68,6 +69,7 @@ function ModalExampleModal({admin}) {
        {admin.map((f)=> (
               <tr key={f.EDU_CODE}>
                 <td>{f.EDU_CODE}</td>
+                <td>{f.TYPE}</td>
                 <td>{f.WEBSITE_LIST}</td>
                 <td>{f.COURSE_NAME}</td>
                 <td>{f.COURSE_DURATION}</td>
@@ -81,7 +83,8 @@ function ModalExampleModal({admin}) {
                     COURSE_DURATION: f.COURSE_DURATION,
                     DESCRIPTION:f.DESCRIPTION,
                     WEBSITE:f.WEBSITE,
-                    ID:f.ID
+                    ID:f.ID,
+                    TYPE:f.TYPE
                     }}>
                     <button className="listbutton">상세보기</button>
                     </Link></td>

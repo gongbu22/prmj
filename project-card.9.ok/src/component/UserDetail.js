@@ -14,12 +14,14 @@ function TestDetail() {
   const DESCRIPTION = location.state?.DESCRIPTION;
   const WEBSITE = location.state?.WEBSITE;
   const ID = location.state?.ID;
+  const TYPE=location.state?.TYPE;
   
   
     return (
         <div className="detailPageBox">
              <ul className="detailPage">
              <li className="list"><Link to={"/user"}><button className="deletebutton"><MdClose/></button></Link></li>
+             <li className="list"><p className="adetail"><b>{TYPE}</b><b className="detailsizeb"></b></p></li>
                 <li className="list"><p className="adetail"><MdOutlineHome/><b className="detailsizeb">사이트명:</b>{WEBSITE_LIST}</p></li>
                 <li className="list"><p className="adetail"><MdComputer/><b className="detailsizeb">교육과정명:</b>{COURSE_NAME}</p></li>
                 <li className="list"><p className="adetail"><MdOutlineUpdate/><b className="detailsizeb">과정일정: </b> {BEGIN_DATE}</p></li>

@@ -140,14 +140,14 @@ app.post("/cardSearch", (req, res)=> {
 })
 
 //카테고리
-app.get("/megastudy", (req, res) => {
-    const event = connection.query('select * from IT_EDU where WEBSITE_LIST like "%메가스터디%" and PUBLICITY="YES" order by EDU_CODE desc;')
+app.get("/national", (req, res) => {
+    const event = connection.query('select * from IT_EDU where TYPE like "%국비%" and PUBLICITY="YES" order by EDU_CODE desc;')
     console.log(event)
     res.json(event)
 })
 
-app.get("/itbank", (req, res) => {
-    const event = connection.query('select * from IT_EDU where WEBSITE_LIST like "%IT뱅크%" and PUBLICITY="YES" order by EDU_CODE desc;')
+app.get("/nonational", (req, res) => {
+    const event = connection.query('select * from IT_EDU where TYPE not like "%국비%" and PUBLICITY="YES" order by EDU_CODE desc;')
     console.log(event)
     res.json(event)
 })
@@ -213,7 +213,7 @@ app.get("/cardfavouritedelete", (req,res) => {
 app.post("/add", (req, res)=> {
     const add = req.body;
     console.log(add)
-    const result = connection.query("insert into IT_EDU(WEBSITE_LIST, COURSE_NAME, BEGIN_DATE, COURSE_DURATION, DESCRIPTION, WEBSITE, ID ) values(?,?,?,?,?,?,?);"
+    const result = connection.query("insert into IT_EDU(WEBSITE_LIST, COURSE_NAME, BEGIN_DATE, COURSE_DURATION, DESCRIPTION, WEBSITE, ID, TYPE) values(?,?,?,?,?,?,?,'교육과정');"
         ,[
             // add['code'],
             add['WEBSITE_LIST'],
@@ -277,7 +277,7 @@ app.get("/userDelete", (req,res) => {
 
 //Favourite
 app.get("/favourite", (req,res) => {
-    const list = connection.query('select F.FCOURSE_CODE, F.WEBSITE_LIST, F.COURSE_NAME, E.ID, E.BEGIN_DATE, E.COURSE_DURATION, E.DESCRIPTION, E.WEBSITE from FAVOURITE_COURSE F, IT_EDU E WHERE F.EDU_CODE = E.EDU_CODE AND E.PUBLICITY="YES" order by F.FCOURSE_CODE desc')
+    const list = connection.query('select F.FCOURSE_CODE, F.WEBSITE_LIST, F.COURSE_NAME, E.ID, E.BEGIN_DATE, E.COURSE_DURATION, E.DESCRIPTION, E.WEBSITE, E.TYPE from FAVOURITE_COURSE F, IT_EDU E WHERE F.EDU_CODE = E.EDU_CODE AND E.PUBLICITY="YES" order by F.FCOURSE_CODE desc')
     console.log(list)
     res.json(list)
 })
