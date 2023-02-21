@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {FaGraduationCap} from 'react-icons/fa'
 import {NavLink} from 'react-router-dom';
 import Footer from './component/Footer';
+import Logo from './component/Logo2.jpg';
 
 
 const NavStyle = styled(NavLink) `
@@ -32,7 +33,7 @@ function App() {
     <div className="wap"> 
     <header>
     <p></p>
-        <NavStyle to="/"><FaGraduationCap/>KIEP</NavStyle>
+        <NavStyle to="/"><img src={Logo} style={{width:"180px", float:"left"}}/></NavStyle>
     </header>
     <p></p>
       <body>

@@ -186,7 +186,9 @@ app.get("/cardfavourite", (req,res) => {
         // console.log(courseName);
    
     const addStar = connection.query(
-        'insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME, ID) select E.EDU_CODE, E.WEBSITE_LIST, E.COURSE_NAME, U.ID from IT_EDU as E join USER as U on E.EDU_CODE='+star+' AND U.ID="'+ID+'" AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE='+star+');'
+        'insert into FAVOURITE_COURSE(EDU_CODE, WEBSITE_LIST, COURSE_NAME, ID) '+
+        'select E.EDU_CODE, E.WEBSITE_LIST, E.COURSE_NAME, U.ID from IT_EDU as E join USER as U on E.EDU_CODE='+star+' AND U.ID="'+ID+
+        '" AND NOT EXISTS(select EDU_CODE from FAVOURITE_COURSE where EDU_CODE='+star+');'
         )
     
     res.json(star)

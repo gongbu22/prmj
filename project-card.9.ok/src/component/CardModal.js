@@ -7,6 +7,8 @@ function ModalExampleModal(code) {
   const [open, setOpen] = React.useState(false)
   const [count, setCount] = React.useState(0);
   
+  console.log(code.code.EVENT_CODE)
+  
   
   return (
     <Modal

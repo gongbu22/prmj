@@ -13,12 +13,10 @@ function Favourite(props) {
     
     const isAuthenticated = user !== null;
   
-// if (star ==codedata) {
-//             alert("이미 저장되었습니다.")
-// }else{
+
 useEffect(() => {
         axios.get("http://3.38.26.169:3001/cardfavouritefind?star2="+star).then((res) => {
-                // console.log(res.data)
+              
                 setCodedata(res.data[0]['EDU_CODE'])
                 console.log(codedata)
             });
@@ -36,23 +34,10 @@ useEffect(() => {
         
             alert("관심과정에 추가되었습니다.")
             navigate("/")
-            // window.location.reload()
+      
             
         }
         
-        const fdelete=(e)=>{
-        
-        const star3 = e.target.name;
-    
-            axios.get("http://3.38.26.169:3001/cardfavouritedelete?star="+star3).then((res) => {
-                console.log(res.data)
-            })
-        
-            alert("관심과정에서 삭제되었습니다.")
-            navigate("/")
-            /*window.location.reload()*/
-            
-        }
     
 
     return(
